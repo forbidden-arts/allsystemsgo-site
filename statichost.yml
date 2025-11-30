@@ -1,0 +1,8 @@
+# Use Node image to build
+image: node:22
+
+# Build command: install deps and build Vite
+command: npm install && npm run build
+
+# Directory to publish (Vite’s output)
+public: dist
