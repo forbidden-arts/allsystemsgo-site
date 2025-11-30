@@ -37,8 +37,8 @@
 	--hero-title-max: 88vw;        /* default */
 	--hero-title-max-desktop: 1100px; /* tuned for 1920×1080 */
 
-	--kicker-glow-strength: 0.8rem;
-	--kicker-glow-strength-docked: 0.05rem;
+	--kicker-glow-strength: 0.2rem;
+	--kicker-glow-strength-docked: 0.025rem;
 }
 
 @layer base {
@@ -260,7 +260,6 @@
 	}
 
 	50% {
-		transform: scale(1.025);
 		box-shadow:
 		  0 0 12px var(--color-accent-orange-soft),
       0 0 22px var(--color-accent-orange);
