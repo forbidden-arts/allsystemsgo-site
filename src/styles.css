@@ -37,8 +37,10 @@
 	--hero-title-max: 88vw;        /* default */
 	--hero-title-max-desktop: 1100px; /* tuned for 1920×1080 */
 
-	--kicker-glow-strength: 0.2rem;
-	--kicker-glow-strength-docked: 0.025rem;
+		/* Kicker glow radii */
+	--kicker-glow-soft-radius: 6px;
+	--kicker-glow-strong-radius: 10px;
+
 }
 
 @layer base {
@@ -48,6 +50,7 @@
 		margin: 0;
 		background-color: var(--color-bg-main);
 		color: var(--color-text-main);
+		font-family: var(--font-body);
 	}
 
 	html {
@@ -80,52 +83,53 @@
 	}
 
 	.page-section {
-		min-height: 100svh;          /* or 100svh if you want mobile-friendly */
+		min-height: 100svh;          /* 100svh for mobile-friendly */
 		display: flex;
 		align-items: center;
 		scroll-snap-align: start;   /* each section is a snap target */
 		scroll-snap-stop: always;   /* don’t skip a section on fast flicks */
 	}
 
-	/* .page-shell {
-		min-height: 100vh;
-		background-color: var(--color-bg-main);
+	.text-main {
 		color: var(--color-text-main);
-	} */
+	}
+	
+	.text-muted {
+		color: var(--color-text-muted);
+	}
 
 	.btn-primary {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
+
 		padding: 0.75rem 2rem;
 		border-radius: 999px;
 		font-weight: 500;
 
-		background-color: var(--color-accent-orange);
-		color: #040404;
+		/* transparent button */
+		background-color: transparent;
+		color: var(--color-accent-orange);
 
-		border: 1px solid color-mix(
-			in srgb,
-			var(--color-accent-orange) 70%,
-			#ffffff 30%
-		);
+		border: 1px solid var(--color-accent-orange);
 
-		/* Rest: no glow */
+		/* Breathing: glow only */
 		box-shadow: none;
 
 		transition:
-			transform 150ms ease,
-			box-shadow 150ms ease,
-			background-color 150ms ease;
+			color 150ms ease,
+			background-color 150ms ease,
+			box-shadow 150ms ease;
 
-		animation: btnBreath 3.4s ease-in-out infinite;
+		animation: btnBreath 3.8s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
 	}
 
 	.btn-primary:hover {
-		background-color: var(--color-accent-orange-soft);
-		/* Optional: slightly stronger glow on hover */
-		box-shadow: 0 0 22px
-			color-mix(in srgb, var(--color-accent-orange-soft) 80%, transparent);
+		background-color: color-mix(in srgb, var(--color-accent-orange) 10%, transparent);
+		box-shadow:
+			0 0 10px var(--color-accent-orange-soft),
+			0 0 18px var(--color-accent-orange);
+		color: var(--color-accent-orange-soft);
 		transform: translateY(-1px);
 	}
 
@@ -135,24 +139,19 @@
 		margin-inline: auto;
 	}
 
-	@media (min-width: 1024px) {
-		.hero-inner {
-			max-width: 90vw;   /* you can tweak this for your 1920 target */
-		}
-	}
-
 	.hero-kicker {
 		font-family: var(--font-mono);
 		letter-spacing: 0.2em;
 		text-transform: uppercase;
 		font-size: 1rem;
+		margin-bottom: 3rem;
 
 		/* Plain deep purple at rest */
 		color: var(--color-accent-purple-deep);
 		text-shadow: none;
 
 		/* Breathing */
-		animation: heroKickerBreath 3.4s ease-in-out infinite;
+		animation: heroKickerBreath 3.8s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
 
 		/* Make docking feel animated */
 		position: relative;
@@ -181,8 +180,14 @@
 		background-color: transparent;
 		box-shadow: none;
 
-		/* Reduce glow intensity when docked */
-		--kicker-glow-strength: var(--kicker-glow-strength-docked);
+		/* Disable glow while docked */
+		--kicker-glow-soft-radius: 0px;
+		--kicker-glow-strong-radius: 0px;
+
+		/* Control docked opacity range */
+		--kicker-opacity-min: 0.70;
+		--kicker-opacity-max: 0.85;
+		--kicker-translate-amount: 0;
 	}
 
 
@@ -191,6 +196,7 @@
 	}
 	
 	.hero-title {
+		margin-bottom: 3rem;
 		font-size: var(--font-size-hero-mobile);
 		line-height: 1.1;
 		font-weight: 900;
@@ -201,6 +207,10 @@
 			65vw,
 			var(--hero-title-max-desktop)
 		);
+	}
+
+	.hero-subtext {
+		margin-bottom: 2rem;
 	}
 
 	@media (min-width: 768px) {
@@ -220,48 +230,50 @@
 			}
 		}
 	}
+
+	@media (min-width: 1024px) {
+		.hero-inner {
+			max-width: 90vw;   /* you can tweak this for your 1920 target */
+		}
+		.hero-title {
+			margin-bottom: 5rem;
+		}
+	}
 }
 
+
 @media (prefers-reduced-motion: reduce) {
-	.hero-kicker,
-	.btn-primary {
+	.hero-kicker{
 		animation: none !important;
 	}
 }
 
 @keyframes heroKickerBreath {
 	0%, 100% {
-		/* Plain text, no glow */
 		text-shadow: none;
-		opacity: 0.9;
+		opacity: var(--kicker-opacity-min, 0.9);
 		transform: translateY(0);
 	}
 
 	50% {
-		/* Glow only at the peak, scaled by --kicker-glow-strength */
+		/* Glow only if radii > 0 (undocked). Otherwise no glow. */
 		text-shadow:
-			0 0 calc(var(--kicker-glow-strength) * 0.375)
-				var(--color-accent-purple-soft),
-			0 0 var(--kicker-glow-strength)
-				var(--color-accent-purple),
-			0 0 calc(var(--kicker-glow-strength) * 1.5)
-				var(--color-accent-purple-soft);
-		opacity: 1;
-		transform: translateY(-1px);
+			0 0 var(--kicker-glow-soft-radius) var(--color-accent-purple-soft),
+			0 0 var(--kicker-glow-strong-radius) var(--color-accent-purple);
+
+		opacity: var(--kicker-opacity-max, 1); /* default for hero */
+		transform: translateY(var(--kicker-translate-amount, -1px));
 	}
 }
 
-
 @keyframes btnBreath {
 	0%, 100% {
-		transform: scale(1);
-		/* Rest: no glow */
 		box-shadow: none;
 	}
 
 	50% {
 		box-shadow:
-		  0 0 12px var(--color-accent-orange-soft),
-      0 0 22px var(--color-accent-orange);
+			0 0 6px var(--color-accent-orange-soft),
+			0 0 10px var(--color-accent-orange);
 	}
 }
