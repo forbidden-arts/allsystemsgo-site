@@ -1,24 +1,50 @@
-import './styles.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+import './styles.css';
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+document.addEventListener('DOMContentLoaded', () => {
+	const hero = document.querySelector('#hero');
+	const heroKicker = document.querySelector('.hero-kicker');
+	const primaryButton = document.querySelector('.btn-primary');
 
-setupCounter(document.querySelector('#counter'))
+	if (!hero || !heroKicker || !primaryButton) {
+		return;
+	}
+
+	let hasLaunched = false;
+
+	const freezeButton = () => {
+		primaryButton.classList.add('btn-primary--static');
+	};
+
+	const launch = () => {
+		if (hasLaunched) return;
+		hasLaunched = true;
+
+		heroKicker.classList.add('hero-kicker--docked');
+		freezeButton();
+	};
+
+	// 1) Button click triggers launch
+	primaryButton.addEventListener('click', () => {
+		launch();
+		// Anchor navigation continues to handle scrolling
+	});
+
+	// 2) Scroll away from hero also triggers launch
+	const observer = new IntersectionObserver(
+		(entries) => {
+			const entry = entries[0];
+			if (!entry) return;
+
+			if (entry.intersectionRatio < 0.85) {
+				launch();
+				// No need to keep observing once launched
+				observer.disconnect();
+			}
+		},
+		{
+			threshold: [0, 0.85, 1],
+		}
+	);
+
+	observer.observe(hero);
+});

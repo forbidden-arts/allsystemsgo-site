@@ -21,8 +21,8 @@
 	--color-accent-purple-deep: #3b1c5e;
 
 	/* Typography */
-	--font-heading: "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont,
-	"Segoe UI", sans-serif;
+	--font-heading: "Archivo", system-ui, -apple-system, BlinkMacSystemFont,
+		"Segoe UI", sans-serif;
 	--font-body: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
 	"Segoe UI", sans-serif;
 	--font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
@@ -33,14 +33,30 @@
 	--font-size-hero-md-min: 3.5rem;      /* ~56px minimum on md+ */
 	--font-size-hero-md-ideal: 6vw;       /* scales more aggressively */
 	--font-size-hero-md-max: 6.5rem;      /* ~88px cap on big screens */
+
+	--hero-title-max: 88vw;        /* default */
+	--hero-title-max-desktop: 1100px; /* tuned for 1920×1080 */
+
+	--kicker-glow-strength: 0.8rem;
+	--kicker-glow-strength-docked: 0.05rem;
 }
 
 @layer base {
-	html, body {
-		margin: 0;
+	html,
+	body {
 		min-height: 100vh;
+		margin: 0;
 		background-color: var(--color-bg-main);
 		color: var(--color-text-main);
+	}
+
+	html {
+		scroll-behavior: smooth;
+	}
+
+	body {
+		scroll-snap-type: y mandatory;
+		overscroll-behavior-y: contain;
 	}
 
 	h1,
@@ -48,7 +64,6 @@
 	h3,
 	h4 {
 		font-family: var(--font-heading);
-		/* font-weight: 600; */
 	}
 
 	code,
@@ -59,11 +74,24 @@
 }
 
 @layer components {
-	.page-shell {
+
+	.page-stack {
+		/* Just a semantic wrapper for all pages */
+	}
+
+	.page-section {
+		min-height: 100svh;          /* or 100svh if you want mobile-friendly */
+		display: flex;
+		align-items: center;
+		scroll-snap-align: start;   /* each section is a snap target */
+		scroll-snap-stop: always;   /* don’t skip a section on fast flicks */
+	}
+
+	/* .page-shell {
 		min-height: 100vh;
 		background-color: var(--color-bg-main);
 		color: var(--color-text-main);
-	}
+	} */
 
 	.btn-primary {
 		display: inline-flex;
@@ -72,18 +100,45 @@
 		padding: 0.75rem 2rem;
 		border-radius: 999px;
 		font-weight: 500;
+
 		background-color: var(--color-accent-orange);
-		color: #050713;
-		border: 1px solid color-mix(in srgb, var(--color-accent-orange) 70%, #ffffff 30%);
-		box-shadow: 0 0 24px rgba(255, 106, 26, 0.6);
-		transition: transform 150ms ease, box-shadow 150ms ease,
+		color: #040404;
+
+		border: 1px solid color-mix(
+			in srgb,
+			var(--color-accent-orange) 70%,
+			#ffffff 30%
+		);
+
+		/* Rest: no glow */
+		box-shadow: none;
+
+		transition:
+			transform 150ms ease,
+			box-shadow 150ms ease,
 			background-color 150ms ease;
+
+		animation: btnBreath 3.4s ease-in-out infinite;
 	}
 
 	.btn-primary:hover {
 		background-color: var(--color-accent-orange-soft);
-		box-shadow: 0 0 32px rgba(255, 140, 59, 0.8);
+		/* Optional: slightly stronger glow on hover */
+		box-shadow: 0 0 22px
+			color-mix(in srgb, var(--color-accent-orange-soft) 80%, transparent);
 		transform: translateY(-1px);
+	}
+
+	.hero-inner {
+		width: 100%;
+		max-width: 92vw;     /* >80% on 1920 */
+		margin-inline: auto;
+	}
+
+	@media (min-width: 1024px) {
+		.hero-inner {
+			max-width: 90vw;   /* you can tweak this for your 1920 target */
+		}
 	}
 
 	.hero-kicker {
@@ -91,24 +146,61 @@
 		letter-spacing: 0.2em;
 		text-transform: uppercase;
 		font-size: 1rem;
-		color: var(--color-accent-purple-deep);
 
-		/* Soft glow */
-		text-shadow:
-			0 0 6px var(--color-accent-purple-deep),
-			0 0 12px var(--color-accent-purple-soft);
+		/* Plain deep purple at rest */
+		color: var(--color-accent-purple-deep);
+		text-shadow: none;
 
 		/* Breathing */
 		animation: heroKickerBreath 3.4s ease-in-out infinite;
+
+		/* Make docking feel animated */
+		position: relative;
+		display: inline-block;
+		transition:
+			top 220ms ease,
+			left 220ms ease,
+			transform 220ms ease,
+			font-size 220ms ease,
+			letter-spacing 220ms ease,
+			padding 220ms ease,
+			background-color 220ms ease;
+	}
+
+	.hero-kicker--docked {
+		position: fixed;
+		top: 1.25rem;
+		left: 1.5rem;
+		z-index: 50;
+
+		font-size: 0.75rem;
+		letter-spacing: 0.16em;
+		padding: 0.125rem 0.25rem;
+		border-radius: 0;
+
+		background-color: transparent;
+		box-shadow: none;
+
+		/* Reduce glow intensity when docked */
+		--kicker-glow-strength: var(--kicker-glow-strength-docked);
 	}
 
 
+	.btn-primary--static {
+		animation: none !important;
+	}
 	
 	.hero-title {
 		font-size: var(--font-size-hero-mobile);
 		line-height: 1.1;
-		font-weight: 1000;
-		text-wrap: balance; /* nice-to-have; safe if unsupported */
+		font-weight: 900;
+		text-wrap: normal; /* nice-to-have; safe if unsupported */
+
+		max-width: clamp(
+			var(--hero-title-max),
+			65vw,
+			var(--hero-title-max-desktop)
+		);
 	}
 
 	@media (min-width: 768px) {
@@ -121,24 +213,56 @@
 		}
 	}
 
+	@media (max-width: 1023px) {
+		@supports (text-wrap: balance) {
+			.hero-title {
+				text-wrap: balance;
+			}
+		}
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.hero-kicker,
+	.btn-primary {
+		animation: none !important;
+	}
 }
 
 @keyframes heroKickerBreath {
-	0%,
-	100% {
-		text-shadow:
-			0 0 3px var(--color-accent-purple),
-			0 0 8px var(--color-accent-purple-soft);
-		opacity: 1.0;
+	0%, 100% {
+		/* Plain text, no glow */
+		text-shadow: none;
+		opacity: 0.9;
 		transform: translateY(0);
 	}
 
 	50% {
+		/* Glow only at the peak, scaled by --kicker-glow-strength */
 		text-shadow:
-			0 0 6px var(--color-accent-purple-purple),
-			0 0 16px var(--color-accent-purple-soft),
-			0 0 22px var(--color-accent-purple);
-		opacity: 1.0;
+			0 0 calc(var(--kicker-glow-strength) * 0.375)
+				var(--color-accent-purple-soft),
+			0 0 var(--kicker-glow-strength)
+				var(--color-accent-purple),
+			0 0 calc(var(--kicker-glow-strength) * 1.5)
+				var(--color-accent-purple-soft);
+		opacity: 1;
 		transform: translateY(-1px);
+	}
+}
+
+
+@keyframes btnBreath {
+	0%, 100% {
+		transform: scale(1);
+		/* Rest: no glow */
+		box-shadow: none;
+	}
+
+	50% {
+		transform: scale(1.00);
+		box-shadow:
+			0 0 18px color-mix(in srgb, var(--color-accent-orange-soft) 30%, transparent),
+			0 0 26px color-mix(in srgb, var(--color-accent-orange) 10%, transparent);
 	}
 }

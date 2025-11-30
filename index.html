@@ -3,32 +3,45 @@
 	<head>
 		<meta charset="UTF-8" />
 		<link rel="icon" type="image/svg+xml" href="/vite.svg" />
-		<link rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400..900&display=swap">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300..700&display=swap">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400..700&display=swap">
+
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>All Systems Go!</title>
 	</head>
 	<body class="min-h-screen">
-<section class="page-shell min-h-screen flex items-center justify-center px-6">
-  <div class="w-full md:w-4/5 max-w-none text-center space-y-6">
-    <div class="hero-kicker">
-      ALL SYSTEMS GO
-    </div>
+		<main class="page-stack">
+			<section id="hero" class="page-section flex items-center justify-center px-6">
+				<div class="hero-inner text-center space-y-6">
+					<div class="hero-kicker">
+						ALL SYSTEMS GO
+					</div>
 
-    <h1 class="hero-title">
-      What happens when you stop but change does not?
-    </h1>
+					<h1 class="hero-title">
+						What happens when you stop<wbr> but change does not?
+					</h1>
 
-    <p class="text-lg md:text-xl text-slate-400">
-      Strategy and innovation for those who can’t afford to stand still.
-    </p>
+					<p class="text-lg md:text-xl text-slate-400">
+						Strategy and innovation for those who can’t afford to stand still.
+					</p>
 
-    <button class="btn-primary mt-6">
-      All Systems Go
-    </button>
-  </div>
-</section>
-
+					<a href="#details" class="btn-primary mt-6 inline-flex">
+						Get Started
+					</a>
+				</div>
+			</section>
+			<section id="details" class="page-section flex items-center px-6">
+				<div class="w-full md:w-4/5 max-w-4xl mx-auto space-y-6">
+					<h2 class="text-2xl md:text-3xl font-semibold">
+						What we actually do
+					</h2>
+					<p class="text-slate-300">
+						Strategy, facilitation, and experimentation for those who are ready to move.
+					</p>
+				</div>
+			</section>
+		</main>
 		<!-- keep Vite’s script at the bottom -->
 		<script type="module" src="/src/main.js"></script>
 	</body>
