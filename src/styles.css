@@ -260,9 +260,9 @@
 	}
 
 	50% {
-		transform: scale(1.00);
+		transform: scale(1.025);
 		box-shadow:
-			0 0 18px color-mix(in srgb, var(--color-accent-orange-soft) 30%, transparent),
-			0 0 26px color-mix(in srgb, var(--color-accent-orange) 10%, transparent);
+		  0 0 12px var(--color-accent-orange-soft),
+      0 0 22px var(--color-accent-orange);
 	}
 }
