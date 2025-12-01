@@ -245,12 +245,12 @@ document.addEventListener('DOMContentLoaded', () => {
 				const depth = 0.3 + Math.random() * 0.7; // 0.3..1
 
 				// Particle size adjustment
-				const size = 1.5 + Math.random() * 2 * depth;
+				const size = 2.5 + Math.random() * 3.5 * depth;
 				el.style.width = `${size}px`;
 				el.style.height = `${size}px`;
 
 				// Particle opacity adjustment
-				const opacity = 0.20 + Math.random() * 0.20;
+				const opacity = 0.50 + Math.random() * 0.35;
 				el.style.opacity = opacity.toFixed(2);
 
 				if (Math.random() < 0.6) {
