@@ -41,6 +41,10 @@
 	--kicker-glow-soft-radius: 6px;
 	--kicker-glow-strong-radius: 10px;
 
+		/* Dust color scheme */
+	--color-dust-1: #8882;   /* soft gray speck */
+	--color-dust-2: #fff3;   /* faint white speck */
+
 }
 
 @layer base {
@@ -190,7 +194,6 @@
 		--kicker-translate-amount: 0;
 	}
 
-
 	.btn-primary--static {
 		animation: none !important;
 	}
@@ -238,6 +241,26 @@
 		.hero-title {
 			margin-bottom: 5rem;
 		}
+	}
+
+	.dust-layer {
+		position: fixed;
+		inset: 0;
+		pointer-events: none;
+		z-index: 5; /* below kicker (50), above page background */
+		overflow: hidden;
+	}
+
+	.dust-particle {
+		position: absolute;
+		width: 2px;
+		height: 2px;
+		border-radius: 999px;
+		background: var(--color-accent-purple-soft);
+		opacity: 0.08;
+		filter: blur(1px);
+		mix-blend-mode: screen;
+		will-change: transform;
 	}
 }
 
