@@ -37,11 +37,11 @@
 	--hero-title-max: 88vw;        /* default */
 	--hero-title-max-desktop: 1100px; /* tuned for 1920×1080 */
 
-		/* Kicker glow radii */
+	/* Kicker glow radii */
 	--kicker-glow-soft-radius: 6px;
 	--kicker-glow-strong-radius: 10px;
 
-		/* Dust color scheme */
+	/* Dust color scheme */
 	--color-dust-1: #8882;   /* soft gray speck */
 	--color-dust-2: #fff3;   /* faint white speck */
 
@@ -256,8 +256,9 @@
 		width: 2px;
 		height: 2px;
 		border-radius: 999px;
-		background: var(--color-accent-purple-soft);
-		opacity: 0.08;
+		/* Will be overridden in JS, but as a fallback */
+		background: var(--color-dust-1);
+		opacity: 0.20;
 		filter: blur(1px);
 		mix-blend-mode: screen;
 		will-change: transform;
