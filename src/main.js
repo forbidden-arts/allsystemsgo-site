@@ -65,8 +65,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		* Adjust THRESHOLD, MAX_NUDGE, NUDGE_FACTOR to tune feel.
 	*/
 
-const sections = Array.from(document.querySelectorAll('.page-section'));
-if (sections.length) {
+	const sections = Array.from(document.querySelectorAll('.page-section'));
+	if (sections.length) {
 	let isFlipping = false;
 
 	let gestureActive = false;
@@ -119,81 +119,81 @@ if (sections.length) {
 		}, 600);
 	};
 
-window.addEventListener(
-	"wheel",
-	(event) => {
-		if (event.ctrlKey) return;
-		if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
+	window.addEventListener(
+		"wheel",
+		(event) => {
+			if (event.ctrlKey) return;
+			if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
 
-		if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) {
-			return;
-		}
-
-		if (isFlipping) {
-			event.preventDefault();
-			return;
-		}
-
-		event.preventDefault();
-
-		const now = performance.now();
-		if (!gestureActive || now - lastWheelTime > RESET_MS) {
-			// new gesture
-			gestureActive = true;
-			scrollAccumulator = 0;
-			baseIndex = getCurrentSectionIndex();
-			baseScrollTop = window.scrollY;
-		}
-		lastWheelTime = now;
-
-		scrollAccumulator += event.deltaY;
-
-		// VISUAL NUDGE:
-		const offset = Math.max(
-			-MAX_NUDGE,
-			Math.min(MAX_NUDGE, scrollAccumulator * NUDGE_FACTOR)
-		);
-
-		window.scrollTo({
-			top: baseScrollTop + offset,
-			behavior: "auto",
-		});
-
-		// 🟧 NEW FAST-PATH: Flip immediately when threshold reached
-		if (Math.abs(scrollAccumulator) >= THRESHOLD) {
-			const direction = Math.sign(scrollAccumulator);
-
-			const targetIndex =
-				direction > 0
-					? Math.min(baseIndex + 1, sections.length - 1)
-					: Math.max(baseIndex - 1, 0);
-
-			if (targetIndex !== baseIndex) {
-				scrollToSection(targetIndex);
-			} else {
-				scrollToSection(baseIndex); // at edge
+			if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) {
+				return;
 			}
 
-			// reset state
-			gestureActive = false;
-			scrollAccumulator = 0;
+			if (isFlipping) {
+				event.preventDefault();
+				return;
+			}
+
+			event.preventDefault();
+
+			const now = performance.now();
+			if (!gestureActive || now - lastWheelTime > RESET_MS) {
+				// new gesture
+				gestureActive = true;
+				scrollAccumulator = 0;
+				baseIndex = getCurrentSectionIndex();
+				baseScrollTop = window.scrollY;
+			}
+			lastWheelTime = now;
+
+			scrollAccumulator += event.deltaY;
+
+			// VISUAL NUDGE:
+			const offset = Math.max(
+				-MAX_NUDGE,
+				Math.min(MAX_NUDGE, scrollAccumulator * NUDGE_FACTOR)
+			);
+
+			window.scrollTo({
+				top: baseScrollTop + offset,
+				behavior: "auto",
+			});
+
+			// 🟧 NEW FAST-PATH: Flip immediately when threshold reached
+			if (Math.abs(scrollAccumulator) >= THRESHOLD) {
+				const direction = Math.sign(scrollAccumulator);
+
+				const targetIndex =
+					direction > 0
+						? Math.min(baseIndex + 1, sections.length - 1)
+						: Math.max(baseIndex - 1, 0);
+
+				if (targetIndex !== baseIndex) {
+					scrollToSection(targetIndex);
+				} else {
+					scrollToSection(baseIndex); // at edge
+				}
+
+				// reset state
+				gestureActive = false;
+				scrollAccumulator = 0;
+				clearTimeout(settleTimeoutId);
+				return;
+			}
+
+			// 🟦 Otherwise: restart settle timer for snap-back
 			clearTimeout(settleTimeoutId);
-			return;
-		}
+			settleTimeoutId = setTimeout(() => {
+				gestureActive = false;
 
-		// 🟦 Otherwise: restart settle timer for snap-back
-		clearTimeout(settleTimeoutId);
-		settleTimeoutId = setTimeout(() => {
-			gestureActive = false;
-
-			// below threshold → snap back
-			scrollToSection(baseIndex);
-			scrollAccumulator = 0;
-		}, 200);
-	},
-	{ passive: false }
-);
-}
+				// below threshold → snap back
+				scrollToSection(baseIndex);
+				scrollAccumulator = 0;
+			}, 200);
+		},
+		{ passive: false }
+	);
+	}
 
 	/**
 	 * Parallax dust system
@@ -377,5 +377,28 @@ window.addEventListener(
 		window.addEventListener('dust:toggle', toggle);
 	})();
 
+	const page2 = document.getElementById('page2');
+	const scrollIndicator = document.querySelector('.scroll-indicator');
+
+	if (page2 && scrollIndicator && 'IntersectionObserver' in window) {
+		const indicatorObserver = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					// Only show when Page 2 is effectively "the page in frame"
+					if (entry.isIntersecting && entry.intersectionRatio >= 0.99) {
+						scrollIndicator.classList.add('scroll-indicator--visible');
+					} else {
+						scrollIndicator.classList.remove('scroll-indicator--visible');
+					}
+				});
+			},
+			{
+				// we only care about near-full visibility
+				threshold: [0.5, 0.75, 0.95, 1],
+			}
+		);
+
+		indicatorObserver.observe(page2);
+	}
 
 });

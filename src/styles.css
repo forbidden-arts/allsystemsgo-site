@@ -262,8 +262,37 @@
 		mix-blend-mode: screen;
 		will-change: transform;
 	}
-}
 
+	.scroll-indicator {
+		width: 2px;
+		height: 42px; /* doubled on desktop below */
+		border-radius: 999px;
+
+		background: color-mix(in srgb, var(--color-accent-orange-soft) 55%, transparent);
+
+		opacity: 0;
+		transform: translateY(8px);
+
+		animation: pulseLine 2.8s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+		will-change: opacity, transform;
+
+		transition:
+			opacity 420ms ease 500ms,
+			transform 320ms ease 500ms;
+	}
+
+	.scroll-indicator--visible {
+		opacity: 0.8;
+		transform: translateY(0);
+	}
+
+	@media (min-width: 768px) {
+		.scroll-indicator {
+			height: 84px;
+		}
+	}
+
+}
 
 @media (prefers-reduced-motion: reduce) {
 	.hero-kicker{
@@ -298,5 +327,17 @@
 		box-shadow:
 			0 0 6px var(--color-accent-orange-soft),
 			0 0 10px var(--color-accent-orange);
+	}
+}
+
+@keyframes pulseLine {
+	0%, 100% {
+		opacity: 0.4;
+		transform: translateY(0);
+	}
+
+	50% {
+		opacity: 0.9;
+		transform: translateY(2px);
 	}
 }
