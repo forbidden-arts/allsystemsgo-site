@@ -109,12 +109,12 @@
 
 	/* Contact button */
 	.nav-contact-btn {
-		padding: 0.4rem 1rem;
+		padding: 0.75rem 2rem;
 		border: 1px solid color-mix(in srgb, var(--color-accent-orange) 80%, transparent);
 		border-radius: 999px;
 		font-size: 0.9rem;
-		font-weight: 600;
-		opacity: 0.9;
+		font-weight: 500;
+		opacity: 1;
 		color: var(--color-accent-orange);
 
 		transition:
@@ -128,6 +128,13 @@
 		color: var(--color-accent-orange-soft);
 		transform: translateY(-1px);
 	}
+
+	.nav-contact-btn--hidden {
+		opacity: 0;
+		pointer-events: none;
+		transform: translateY(-4px);
+	}
+
 
 	.page-stack {
 		/* Just a semantic wrapper for all pages */

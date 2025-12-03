@@ -60,6 +60,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	observer.observe(hero);
 
+	const navContactBtn = document.querySelector('.nav-contact-btn');
+	const contactSection = document.getElementById('contact');
+
+	if (navContactBtn && contactSection && 'IntersectionObserver' in window) {
+		const contactObserver = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting && entry.intersectionRatio >= 0.6) {
+						// On the contact page → hide the navbar contact button
+						navContactBtn.classList.add('nav-contact-btn--hidden');
+					} else {
+						navContactBtn.classList.remove('nav-contact-btn--hidden');
+					}
+				});
+			},
+			{
+				threshold: [0.4, 0.6, 0.8],
+			}
+		);
+
+		contactObserver.observe(contactSection);
+	}
+
+
 	// Contact form: AJAX submit to avoid redirect and update button text
 	const contactForm = document.querySelector('#contact form');
 
@@ -102,7 +126,6 @@ document.addEventListener('DOMContentLoaded', () => {
 			}
 		});
 	}
-
 
 	// If mobile, bail.
 	if (isMobile) {
