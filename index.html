@@ -11,6 +11,14 @@
 		<title>All Systems Go!</title>
 	</head>
 	<body>
+		<div id="site-navbar" class="site-navbar">
+			<div class="nav-inner">
+				<div class="nav-left"></div>
+				<a href="#contact" class="nav-contact-btn">
+					Contact
+				</a>
+			</div>
+		</div>
 		<div id="dust-layer" class="dust-layer" aria-hidden="true"></div>
 		<main class="page-stack">
 			<section id="hero" class="page-section flex items-center justify-center px-6">
@@ -117,7 +125,7 @@
 			<!-- Centered content block -->
 				<div class="w-full md:w-4/5 max-w-4xl mx-auto h-full flex items-center justify-center">
 					<div class="space-y-6 flex flex-col items-center">
-						<h2 class="text-3xl md:text-4xl font-semibold tracking-wide leading-snug md:leading-normal">
+						<h2 class="pt-12 md:pt-0 text-3xl md:text-4xl font-semibold tracking-wide leading-snug md:leading-normal">
 								Organisations that we have supported
 						</h2>
 						<p class="text-main opacity-80 mb-12">From startups to global companies, we have worked with teams facing real strategic and innovation challenges.
@@ -140,6 +148,74 @@
 					</div>
 				</div>
 			</section>
+			<section id="contact" class="page-section">
+				<div class="w-full max-w-2xl mx-auto space-y-6 px-6 md:px-0 text-center">
+					<h2 class="text-2xl md:text-3xl font-semibold tracking-wide leading-snug">
+						Let’s get things moving
+					</h2>
+
+					<p class="text-muted opacity-80 max-w-xl mx-auto">
+						This is not a sales call, it is a conversation. Where you are now,
+						what feels stuck, and what movement could look like.
+					</p>
+
+					<form
+						action="https://formspree.io/f/xvgerljp"
+						method="POST"
+						class="space-y-4 text-left"
+					>
+						<label class="block">
+							<span class="block text-sm font-medium mb-1">Name</span>
+							<input
+								type="text"
+								name="name"
+								required
+								class="contact-input"
+							>
+						</label>
+
+						<label class="block">
+							<span class="block text-sm font-medium mb-1">Email</span>
+							<input
+								type="email"
+								name="email"
+								required
+								class="contact-input"
+							>
+						</label>
+
+						<label class="block">
+							<span class="block text-sm font-medium mb-1">Organisation (optional)</span>
+							<input
+								type="text"
+								name="organisation"
+								class="contact-input"
+							>
+						</label>
+
+						<label class="block">
+							<span class="block text-sm font-medium mb-1">What is on your mind</span>
+							<textarea
+								name="message"
+								rows="5"
+								required
+								class="contact-textarea"
+							></textarea>
+						</label>
+
+						<div class="flex justify-center">
+							<button type="submit" class="btn-primary mt-2">
+								Send message
+							</button>
+						</div>
+					</form>
+
+					<p class="text-xs text-muted opacity-70">
+						We only use your details to reply to your message. No mailing list. No spam. No sharing. No bullshit.
+					</p>
+				</div>
+			</section>
+
 		</main>
 		<!-- keep Vite’s script at the bottom -->
 		<script type="module" src="/src/main.js"></script>

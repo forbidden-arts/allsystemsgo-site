@@ -60,6 +60,50 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	observer.observe(hero);
 
+	// Contact form: AJAX submit to avoid redirect and update button text
+	const contactForm = document.querySelector('#contact form');
+
+	if (contactForm) {
+		contactForm.addEventListener('submit', async (event) => {
+			event.preventDefault();
+
+			const form = event.target;
+			const submitButton = form.querySelector('button[type="submit"]');
+
+			if (!submitButton) {
+				form.submit(); // fallback
+				return;
+			}
+
+			const originalText = submitButton.textContent;
+			submitButton.disabled = true;
+			submitButton.textContent = 'Sending…';
+
+			try {
+				const formData = new FormData(form);
+				const response = await fetch(form.action, {
+					method: form.method || 'POST',
+					body: formData,
+					headers: {
+						Accept: 'application/json',
+					},
+				});
+
+				if (response.ok) {
+					submitButton.textContent = 'Message sent';
+					form.reset();
+				} else {
+					submitButton.textContent = 'Try again';
+					submitButton.disabled = false;
+				}
+			} catch (error) {
+				submitButton.textContent = 'Error — try again';
+				submitButton.disabled = false;
+			}
+		});
+	}
+
+
 	// If mobile, bail.
 	if (isMobile) {
 		return;
