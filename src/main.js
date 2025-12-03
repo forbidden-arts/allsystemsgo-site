@@ -1,5 +1,10 @@
 import './styles.css';
 
+// Check for mobile with screen size or pointer type
+const isMobile =
+	window.matchMedia('(max-width: 768px)').matches ||
+	window.matchMedia('(pointer: coarse)').matches;
+
 document.addEventListener('DOMContentLoaded', () => {
 	const hero = document.querySelector('#hero');
 	const heroKicker = document.querySelector('.hero-kicker');
@@ -54,6 +59,11 @@ document.addEventListener('DOMContentLoaded', () => {
 	);
 
 	observer.observe(hero);
+
+	// If mobile, bail.
+	if (isMobile) {
+		return;
+	}
 
 	/*
 		Paper-page style sticky scrolling.

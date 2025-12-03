@@ -66,6 +66,12 @@
 		overscroll-behavior-y: contain;
 	}
 
+	@media (max-width: 640px) {
+		html {
+			font-size: 15px; /* down from 16px-ish */
+		}
+	}
+
 	h1,
 	h2,
 	h3,
@@ -125,7 +131,7 @@
 			background-color 150ms ease,
 			box-shadow 150ms ease;
 
-		animation: btnBreath 3.8s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+		animation: btnBreath 7.6s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
 	}
 
 	.btn-primary:hover {
@@ -155,7 +161,7 @@
 		text-shadow: none;
 
 		/* Breathing */
-		animation: heroKickerBreath 3.8s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+		animation: heroKickerBreath 7.6s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
 
 		/* Make docking feel animated */
 		position: relative;
@@ -266,7 +272,7 @@
 
 	.scroll-indicator {
 		width: 2px;
-		height: 42px; /* doubled on desktop below */
+		height: 84px; /* doubled on desktop below */
 		border-radius: 999px;
 
 		background: color-mix(in srgb, var(--color-accent-orange-soft) 55%, transparent);
@@ -287,11 +293,34 @@
 		transform: translateY(0);
 	}
 
-	@media (min-width: 768px) {
-		.scroll-indicator {
-			height: 84px;
-		}
+	@media (max-width: 768px) {
+	/* Turn off CSS animations on mobile */
+	.hero-kicker,
+	.btn-primary,
+	.scroll-indicator,
+	.process-card {
+		animation: none !important;
 	}
+
+	.scroll-indicator {
+		display: none !important;
+	}
+
+	/* Also kill any hover-only box-shadow “pulse” that might be expensive */
+	.btn-primary {
+		box-shadow: none !important;
+	}
+
+	.process-card {
+		border: 1px solid color-mix(
+			in srgb,
+			var(--color-accent-orange) 80%,
+			transparent
+		) !important;
+
+		box-shadow: none !important; /* ensure no desktop glow leaks in */
+	}	
+}
 
 	.process-grid {
 		display: flex;
@@ -325,7 +354,7 @@
 			transform 180ms ease;
 
 		/* sequential glow, offset per card below */
-		animation: cardGlow 5.2s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+		animation: cardGlow 7.2s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
 	}
 
 	.process-card-title {
@@ -455,8 +484,11 @@
 
 @keyframes cardGlow {
 	0%, 100% {
-		box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-		border-color: rgba(255, 255, 255, 0.1);
+		/* soft baseline glow instead of fully off */
+		box-shadow:
+			0 0 2px color-mix(in srgb, var(--color-accent-orange-soft) 25%, transparent),
+			0 0 6px color-mix(in srgb, var(--color-accent-orange) 10%, transparent);
+		border-color: color-mix(in srgb, var(--color-accent-orange) 20%, rgba(255, 255, 255, 0.18));
 	}
 
 	50% {
