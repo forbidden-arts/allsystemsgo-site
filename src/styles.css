@@ -111,7 +111,7 @@
 	.nav-contact-btn {
 		padding: 0.4rem 1rem;
 		border: 1px solid color-mix(in srgb, var(--color-accent-orange) 80%, transparent);
-		border-radius: 0.5rem;
+		border-radius: 999px;
 		font-size: 0.9rem;
 		font-weight: 600;
 		opacity: 0.9;
@@ -124,9 +124,9 @@
 	}
 
 	.nav-contact-btn:hover {
+		background-color: color-mix(in srgb, var(--color-accent-orange) 10%, transparent);
+		color: var(--color-accent-orange-soft);
 		transform: translateY(-1px);
-		border-color: var(--color-accent-orange);
-		color: var(--color-accent-orange);
 	}
 
 	.page-stack {
@@ -194,7 +194,7 @@
 		font-family: var(--font-mono);
 		letter-spacing: 0.2em;
 		text-transform: uppercase;
-		font-size: 1rem;
+		font-size: 1.5rem;
 		margin-bottom: 3rem;
 
 		/* Plain deep purple at rest */

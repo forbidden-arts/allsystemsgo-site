@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	let lastWheelTime = 0;
 	let settleTimeoutId = null;
 
-	const THRESHOLD = 220;   // how hard you have to scroll to flip
+	const THRESHOLD = 150;   // how hard you have to scroll to flip
 	const RESET_MS = 320;    // gesture timeout
 	const MAX_NUDGE = 40;    // max px the page will move as a "nudge"
 	const NUDGE_FACTOR = 0.25; // how much of the accumulated delta we use for the nudge
@@ -274,7 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			return;
 		}
 
-		const NUM_PARTICLES = 200;
+		const NUM_PARTICLES = 120;
 
 		const state = {
 			enabled: true,        // default ON
