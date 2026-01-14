@@ -57,6 +57,10 @@
 		font-family: var(--font-body);
 	}
 
+	body.is-static {
+	scroll-snap-type: none;
+	}
+
 	html {
 		scroll-behavior: smooth;
 	}
