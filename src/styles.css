@@ -198,11 +198,11 @@
 		display: inline-block;
 
 		/* Static glow */
-		color: var(--color-accent-purple);
+		color: var(--color-accent-orange-deep);
 		text-shadow:
 			0 0 4px
-				color-mix(in srgb, var(--color-accent-purple-soft) 50%, transparent),
-			0 0 8px color-mix(in srgb, var(--color-accent-purple) 30%, transparent);
+				color-mix(in srgb, var(--color-accent-orange-soft) 50%, transparent),
+			0 0 8px color-mix(in srgb, var(--color-accent-orange) 30%, transparent);
 
 		/* Breathing animation */
 		animation: heroKickerBreath 7.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
@@ -450,11 +450,11 @@
 		padding: 0.75rem 0.9rem;
 		border-radius: 0.75rem;
 		border: 1px solid
-			color-mix(in srgb, var(--color-accent-purple) 70%, transparent);
+			color-mix(in srgb, var(--color-accent-orange) 70%, transparent);
 		background-color: color-mix(in srgb, var(--color-bg-main) 85%, #050509 15%);
 		color: var(--color-text-main);
 		box-shadow: 0 0 10px
-			color-mix(in srgb, var(--color-accent-purple-soft) 30%, transparent);
+			color-mix(in srgb, var(--color-accent-orange-soft) 30%, transparent);
 		outline: none;
 		transition:
 			border-color 160ms ease,
@@ -470,9 +470,9 @@
 
 	.contact-input:focus,
 	.contact-textarea:focus {
-		border-color: var(--color-accent-purple);
+		border-color: var(--color-accent-orange);
 		box-shadow: 0 0 14px
-			color-mix(in srgb, var(--color-accent-purple-soft) 45%, transparent);
+			color-mix(in srgb, var(--color-accent-orange-soft) 45%, transparent);
 		background-color: color-mix(in srgb, var(--color-bg-main) 75%, #050509 25%);
 	}
 
