@@ -6,6 +6,30 @@ const isMobile =
 	window.matchMedia("(pointer: coarse)").matches;
 
 document.addEventListener("DOMContentLoaded", () => {
+	// Accordion: one open at a time, all closed by default
+	const accordionTriggers = document.querySelectorAll(".accordion-trigger");
+
+	accordionTriggers.forEach((trigger) => {
+		const panel = trigger.nextElementSibling;
+		panel.setAttribute("aria-hidden", "true");
+
+		trigger.addEventListener("click", () => {
+			const isOpen = trigger.getAttribute("aria-expanded") === "true";
+
+			// Close all
+			accordionTriggers.forEach((t) => {
+				t.setAttribute("aria-expanded", "false");
+				t.nextElementSibling.setAttribute("aria-hidden", "true");
+			});
+
+			// If it was closed, open it
+			if (!isOpen) {
+				trigger.setAttribute("aria-expanded", "true");
+				panel.setAttribute("aria-hidden", "false");
+			}
+		});
+	});
+
 	const hero = document.querySelector("#hero");
 	const heroKicker = document.querySelector(".hero-kicker");
 	const primaryButton = document.querySelector(".btn-primary");
