@@ -6,6 +6,37 @@ const isMobile =
 	window.matchMedia("(pointer: coarse)").matches;
 
 document.addEventListener("DOMContentLoaded", () => {
+	// Hero video: force muted + play explicitly. Some browsers/dev-reload
+	// scenarios don't reliably honor the HTML autoplay/muted attributes alone.
+	const heroVideo = document.querySelector(".hero-video");
+	if (heroVideo) {
+		heroVideo.muted = true;
+		heroVideo.playsInline = true;
+
+		const resumeOnInteraction = () => {
+			heroVideo.play().catch(() => {});
+			window.removeEventListener("click", resumeOnInteraction);
+			window.removeEventListener("touchstart", resumeOnInteraction);
+		};
+
+		const tryPlay = () => {
+			heroVideo.play().catch(() => {
+				window.addEventListener("click", resumeOnInteraction, { once: true });
+				window.addEventListener("touchstart", resumeOnInteraction, {
+					once: true,
+				});
+			});
+		};
+
+		// If metadata is already loaded (cached / fast load), try immediately.
+		// Otherwise wait for the browser to signal readiness before calling play().
+		if (heroVideo.readyState >= 2) {
+			tryPlay();
+		} else {
+			heroVideo.addEventListener("loadeddata", tryPlay, { once: true });
+		}
+	}
+
 	// Accordion: one open at a time, all closed by default
 	const accordionTriggers = document.querySelectorAll(".accordion-trigger");
 
@@ -31,50 +62,50 @@ document.addEventListener("DOMContentLoaded", () => {
 	});
 
 	const hero = document.querySelector("#hero");
-	const heroKicker = document.querySelector(".hero-kicker");
+	const navHomeLink = document.querySelector(".nav-home-link");
 	const primaryButton = document.querySelector(".btn-primary");
 
 	/* 
-		Initial page-load behavior, button glow, and hero-kicker repositioning.
-		After the user scrolls far enough, or the "Get Started" button is
-		pressed, the button glow ceases and the hero-kicker DIV is moved to the
-		upper left hand corner.
+		Initial page-load behavior: button glow freezes and the navbar's
+		home link fades in once the user scrolls past the hero or clicks
+		the primary button. The in-hero kicker no longer docks; it stays
+		put and a separate, always-in-the-navbar link takes over that job.
 	*/
 
-	if (!hero || !heroKicker || !primaryButton) {
+	if (!hero || !navHomeLink || !primaryButton) {
 		return;
 	}
 
-	let hasLaunched = false;
+	let hasFrozenButton = false;
 
 	const freezeButton = () => {
+		if (hasFrozenButton) return;
+		hasFrozenButton = true;
 		primaryButton.classList.add("btn-primary--static");
 	};
 
-	const launch = () => {
-		if (hasLaunched) return;
-		hasLaunched = true;
-
-		heroKicker.classList.add("hero-kicker--docked");
-		freezeButton();
+	const setNavHomeLinkVisible = (visible) => {
+		navHomeLink.classList.toggle("nav-home-link--visible", visible);
 	};
 
-	// 1) Button click triggers launch
+	// 1) Button click freezes the glow once (kept one-way; intentional)
 	primaryButton.addEventListener("click", () => {
-		launch();
+		freezeButton();
 		// Anchor navigation continues to handle scrolling
 	});
 
-	// 2) Scroll away from hero also triggers launch
+	// 2) Nav home link visibility tracks whether the hero is in view,
+	//    continuously, so it hides again if the user scrolls/clicks back up.
 	const observer = new IntersectionObserver(
 		(entries) => {
 			const entry = entries[0];
 			if (!entry) return;
 
-			if (entry.intersectionRatio < 0.85) {
-				launch();
-				// No need to keep observing once launched
-				observer.disconnect();
+			const heroInView = entry.intersectionRatio >= 0.85;
+			setNavHomeLinkVisible(!heroInView);
+
+			if (!heroInView) {
+				freezeButton();
 			}
 		},
 		{

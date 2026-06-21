@@ -20,40 +20,227 @@
 		<link rel="stylesheet" href="/src/styles.css" />
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta
+			name="description"
+			content="Strategy and innovation consulting for technical organizations. All Systems Go helps teams turn complexity into clear, actionable direction."
+		/>
 		<title>All Systems Go!</title>
 	</head>
 	<body>
 		<div id="site-navbar" class="site-navbar">
 			<div class="nav-inner">
-				<div class="nav-left"></div>
-				<a href="#contact" class="nav-contact-btn"> Contact </a>
+				<a href="#hero" class="nav-home-link">ALL SYSTEMS GO</a>
+				<div class="nav-right">
+					<a href="#cases" class="nav-link">Cases</a>
+					<a href="#services" class="nav-link">Services</a>
+					<a href="#contact" class="nav-contact-btn"> Contact </a>
+				</div>
 			</div>
 		</div>
-		<div id="dust-layer" class="dust-layer" aria-hidden="true"></div>
+		<!-- <div id="dust-layer" class="dust-layer" aria-hidden="true"></div> -->
 		<main class="page-stack">
 			<section
 				id="hero"
-				class="page-section flex items-center justify-center px-6"
+				class="page-section hero-light flex items-center justify-center px-6"
 			>
+				<div class="hero-video-layer" aria-hidden="true">
+					<video class="hero-video" autoplay muted loop playsinline>
+						<source src="/assets/hero-compressed.mp4" type="video/mp4" />
+					</video>
+					<div class="hero-video-overlay"></div>
+				</div>
+
 				<div class="hero-inner text-center">
 					<div class="hero-kicker">ALL SYSTEMS GO</div>
 
 					<h1 class="hero-title">
-						Most strategies don't fail.<wbr /> They never actually start.
+						Complexity, resolved.
 					</h1>
 
-					<p class="hero-subtext text-lg md:text-xl text-muted">
-						For technical organizations that are done just talking about it.
+					<p class="hero-subtext text-lg md:text-xl">
+						Less noise. More direction. Faster action.
 					</p>
 
-					<a href="#page2" class="btn-primary mt-6 inline-flex">How we work</a>
+					<a href="#services" class="btn-primary mt-6 inline-flex">How we work</a>
 				</div>
 			</section>
-			<section id="page2" class="page-section relative px-6">
+			<section id="about" class="page-section relative px-6">
+				<div class="w-full md:w-4/5 max-w-3xl mx-auto about-copy">
+					<h2 class="sr-only">About All Systems Go</h2>
+					<p class="about-lead">
+						All Systems Go is a boutique that helps organizations understand
+						where they are, where they want to go, and how to get there. We
+						turn complexity into clarity, and we turn old problems into new
+						solutions.
+					</p>
+					<p>
+						We call it speculative nonfiction: serious thinking about the
+						future, about obstacles both close and far away, turned into a
+						strategy that teams can actually use.
+					</p>
+					<p>
+						No jargon-filled decks of smiling faces. No rigid frameworks or
+						checklists. No cut-and-paste solutions that every other competitor
+						has already implemented. No more doing the same thing and hoping
+						for a different result.
+					</p>
+					<p class="about-closer">
+						All Systems Go. Good work, done well, every system aligned.
+					</p>
+					<div class="flex justify-center mt-10 md:mt-16">
+						<a href="#services" class="btn-primary inline-flex">See it in action</a>
+					</div>
+				</div>
+				<div
+					class="scroll-indicator absolute left-1/2 -translate-x-1/2 bottom-30"
+				></div>
+			</section>
+			<section id="cases" class="page-section relative px-6">
+				<div class="w-full md:w-4/5 max-w-5xl mx-auto">
+					<h2 class="sr-only">Case Studies</h2>
+					<p class="section-kicker text-center">Work that shipped.</p>
+					<div class="cases-grid">
+						<article class="case-tile">
+							<img
+								src="/assets/tile_microsoft.png"
+								alt="Microsoft case study"
+								class="case-tile-image"
+							/>
+							<div class="case-tile-label">
+								<span>Speculative Futures</span>
+							</div>
+							<div class="case-tile-overlay">
+								<h3 class="case-tile-title">Microsoft</h3>
+								<p class="case-tile-copy">
+									Speculative think-pieces imagining what entire industries will look like in five to seven years, and the new business models and customer relationships that future demands.
+								</p>
+								<div class="case-tile-tags">
+									<span class="case-tag">Advisory</span>
+									<span class="case-tag">Storytelling</span>
+									<span class="case-tag">PoC</span>
+								</div>
+							</div>
+						</article>
+
+						<article class="case-tile">
+							<img
+								src="/assets/tile_samsung.png"
+								alt="Samsung case study"
+								class="case-tile-image"
+							/>
+							<div class="case-tile-label">
+								<span>From the Ground Up</span>
+							</div>
+							<div class="case-tile-overlay">
+								<h3 class="case-tile-title">Samsung</h3>
+								<p class="case-tile-copy">
+									A greenfield smart home strategy, built from market research and emerging behavior patterns into a roadmap their product teams could actually execute against.
+								</p>
+								<div class="case-tile-tags">
+									<span class="case-tag">Advisory</span>
+									<span class="case-tag">Workshops</span>
+								</div>
+							</div>
+						</article>
+
+						<article class="case-tile">
+							<img
+								src="/assets/tile_beiersdorf.png"
+								alt="Beiersdorf case study"
+								class="case-tile-image"
+							/>
+							<div class="case-tile-label">
+								<span>One of One, at Scale</span>
+							</div>
+							<div class="case-tile-overlay">
+								<h3 class="case-tile-title">Beiersdorf</h3>
+								<p class="case-tile-copy">
+									A new product line built around customization at scale, from business model through go-to-market, launched into a category where 'personalized' had always meant 'expensive.'
+								</p>
+								<div class="case-tile-tags">
+									<span class="case-tag">Advisory</span>
+									<span class="case-tag">Workshops</span>
+									<span class="case-tag">PoC</span>
+								</div>
+							</div>
+						</article>
+
+						<article class="case-tile">
+							<img
+								src="/assets/tile_wartsila.png"
+								alt="Wärtsilä case study"
+								class="case-tile-image"
+							/>
+							<div class="case-tile-label">
+								<span>Many Voices, One Direction</span>
+							</div>
+							<div class="case-tile-overlay">
+								<h3 class="case-tile-title">Wärtsilä</h3>
+								<p class="case-tile-copy">
+									A series of workshops that took a leadership group from individually-held opinions to one shared strategy, with the alignment and the buy-in to actually act on it.
+								</p>
+								<div class="case-tile-tags">
+									<span class="case-tag">Workshops</span>
+									<span class="case-tag">Storytelling</span>
+								</div>
+							</div>
+						</article>
+
+						<article class="case-tile">
+							<img
+								src="/assets/tile_f5.png"
+								alt="F5 case study"
+								class="case-tile-image"
+							/>
+							<div class="case-tile-label">
+								<span>Make It Real First</span>
+							</div>
+							<div class="case-tile-overlay">
+								<h3 class="case-tile-title">F5</h3>
+								<p class="case-tile-copy">
+									A new infra-as-a-service product line with no playbook for how sales or stakeholders would respond, so we built one: a working prototype that made the whole thing real before a single customer saw it.
+								</p>
+								<div class="case-tile-tags">
+									<span class="case-tag">Advisory</span>
+									<span class="case-tag">Storytelling</span>
+									<span class="case-tag">PoC</span>
+								</div>
+							</div>
+						</article>
+
+						<article class="case-tile">
+							<img
+								src="/assets/tile_asana.png"
+								alt="Asana case study"
+								class="case-tile-image"
+							/>
+							<div class="case-tile-label">
+								<span>What Comes First</span>
+							</div>
+							<div class="case-tile-overlay">
+								<h3 class="case-tile-title">Asana</h3>
+								<p class="case-tile-copy">
+									A speculative go-to-market and organizational strategy for a future that didn't exist yet, built so leadership could make real decisions about a market that hadn't been defined.
+								</p>
+								<div class="case-tile-tags">
+									<span class="case-tag">Advisory</span>
+									<span class="case-tag">Storytelling</span>
+								</div>
+							</div>
+						</article>
+					</div>
+					<div class="flex justify-center mt-10 md:mt-16">
+						<a href="#services" class="btn-primary inline-flex">Our Services</a>
+					</div>
+				</div>
+			</section>
+			<section id="services" class="page-section relative px-6">
 				<div
 					class="w-full md:w-4/5 max-w-3xl mx-auto h-full flex items-center justify-center"
 				>
-					<div class="accordion w-full">
+					<div class="w-full">
+						<p class="section-kicker">Here's where that happens.</p>
+						<div class="accordion w-full">
 						<div class="accordion-item">
 							<button class="accordion-trigger" aria-expanded="false">
 								<span>Business Storytelling</span>
@@ -67,9 +254,6 @@
 										understand what you need them to. Your presentation should
 										be an asset, not a liability. From 500 euros.
 									</p>
-									<a href="#contact" class="btn-primary mt-6 inline-flex justify-center"
-										>Let's talk</a
-									>
 									<div class="accordion-media">
 										<blockquote class="accordion-quote">
 											<p>
@@ -135,7 +319,7 @@
 										Sometimes the most valuable thing is a clear outside
 										perspective. We work with leadership teams to diagnose
 										problems, map options, and define the path forward. You keep
-										ownership of the execution. Truly bespoke. Let's talk.
+										ownership of the execution. Truly bespoke.
 									</p>
 									<blockquote class="accordion-quote">
 										<p>
@@ -149,78 +333,96 @@
 								</div>
 							</div>
 						</div>
+						<div class="accordion-item">
+							<button class="accordion-trigger" aria-expanded="false">
+								<span>Proof of Concept</span>
+								<span class="accordion-icon" aria-hidden="true"></span>
+							</button>
+							<div class="accordion-panel">
+								<div class="accordion-body">
+									<p>
+										Sometimes the fastest way to get a decision made is to
+										make the thing and let people see it work. We turn a
+										speculative idea into something real, 
+										a functioning prototype, proof that survives contact with
+										a skeptical room.
+									</p>
+									<blockquote class="accordion-quote">
+										<p>
+											"The concept didn't sound like anything we usually get. That was the point. Once people saw it, they didn't need convincing."
+										</p>
+										<cite>David Cox<br />- Executive Director, Microsoft</cite>
+									</blockquote>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="flex justify-center mt-10 md:mt-16">
+						<a href="#contact" class="btn-primary inline-flex">Let's talk</a>
 					</div>
 				</div>
-				<div
+				<!-- <div
 					class="scroll-indicator absolute left-1/2 -translate-x-1/2 bottom-30"
-				></div>
+				></div> -->
 			</section>
-			<section
-				id="page3"
+			<section id="process"
 				class="page-section relative flex items-center justify-center px-6 text-center"
 			>
 				<div class="w-full md:w-4/5 max-w-5xl mx-auto space-y-6">
+					<p class="section-kicker text-center">Still skeptical? Fair.</p>
 					<h2
 						class="text-3xl md:text-4xl font-semibold tracking-wide leading-snug md:leading-normal"
 					>
-						The problem is rarely the idea. It's everything that happens between
-						the idea and the result.
+						You've seen a four-step framework before. Here's why this one
+						isn't decoration.
 					</h2>
 					<p class="text-muted opacity-80">
-						Progress doesn’t come from bigger plans, more slides, or another
-						round of alignment meetings.
+						No two engagements run the same way. But almost all of them pass
+						through the same four stages, because skipping one is usually
+						where things go wrong.
 					</p>
-					<h4
-						class="md:text-xl font-semibold tracking-wide leading-snug md:leading-normal text-main"
-					>
-						It comes from doing.
-					</h4>
 					<div class="w-full max-w-5xl mx-auto">
 						<div class="process-grid mt-8 mb-8 md:mt-12 md:mb-12">
 							<article class="process-card">
 								<h3 class="process-card-title">Discover</h3>
 								<p class="process-card-body">
-									See the real problem and the real opportunity. Cut the noise
-									and focus on what matters.
+									For Wärtsilä's leadership to align, we had to find out where they actually disagreed. Most teams skip this step. It's the one that matters most.
 								</p>
 							</article>
 
 							<article class="process-card">
 								<h3 class="process-card-title">Design</h3>
 								<p class="process-card-body">
-									Explore options fast. Sketch, test, and shape ideas before
-									committing to anything expensive.
+									Samsung's smart home plan strategy started as a blank sheet. We crafted a plan that leveraged old strengths while exploring new opportunities.
 								</p>
 							</article>
 
 							<article class="process-card">
 								<h3 class="process-card-title">Develop</h3>
 								<p class="process-card-body">
-									Build the ideas worth pursuing. Move from abstract concept to
-									something real.
+									For F5, this meant building a working proof of concept, not a pitch deck.
+									Sometimes the only way to know if an idea holds up is to make it real.
 								</p>
 							</article>
 
 							<article class="process-card">
 								<h3 class="process-card-title">Deliver</h3>
 								<p class="process-card-body">
-									Launch, learn, iterate. Small wins build momentum, momentum
-									builds change.
+									Microsoft's first think-piece drew skepticism. It got read, then believed, then presented by the CEO. That's delivery working as intended.
 								</p>
 							</article>
 						</div>
 					</div>
 					<p class="text-muted opacity-80 leading-loose">
-						Every step builds confidence. Every cycle builds clarity.
-					</p>
-					<p class="text-main opacity-100 leading-loose">
-						Momentum isn’t magic. It’s habit.
+						None of this is novel. It's just rarely done properly, with
+						one point of accountability the whole way through.
 					</p>
 					<a href="#contact" class="btn-primary mt-6 inline-flex justify-center"
-						>Let's talk</a
+						>Still not sure? Ask.</a
 					>
+				</div>
 			</section>
-			<section id="page4" class="page-section relative px-6">
+			<section id="clients" class="page-section relative px-6">
 				<!-- Centered content block -->
 				<div
 					class="w-full md:w-4/5 max-w-4xl mx-auto h-full flex items-center justify-center"
@@ -229,11 +431,9 @@
 						<h2
 							class="pt-12 md:pt-0 text-3xl md:text-4xl font-semibold tracking-wide leading-snug md:leading-normal"
 						>
-							Work that shipped.
+							The list.
 						</h2>
-						<p class="text-main opacity-80 mb-12">
-							Real problems. Real outcomes.
-						</p>
+
 						<div class="logo-grid">
 							<img
 								src="/assets/wartsila_white.svg"
@@ -246,8 +446,8 @@
 								class="logo-item"
 							/>
 							<img
-								src="/assets/Boost.png"
-								alt="Boost Startups"
+								src="/assets/asana.png"
+								alt="Asana"
 								class="logo-item"
 							/>
 							<img

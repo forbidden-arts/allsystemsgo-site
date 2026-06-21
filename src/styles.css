@@ -127,6 +127,42 @@
 		justify-content: space-between;
 	}
 
+	.nav-home-link {
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		letter-spacing: 0.16em;
+		color: var(--color-accent-orange);
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity 320ms ease;
+	}
+
+	.nav-home-link:hover {
+		color: var(--color-accent-orange-soft);
+	}
+
+	.nav-home-link--visible {
+		opacity: 1;
+		pointer-events: auto;
+	}
+
+	.nav-right {
+		display: flex;
+		align-items: center;
+		gap: 2rem;
+	}
+
+	.nav-link {
+		font-size: 0.9rem;
+		font-weight: 500;
+		color: var(--color-accent-orange);
+		transition: color 200ms ease;
+	}
+
+	.nav-link:hover {
+		color: var(--color-accent-orange-soft);
+	}
+
 	.nav-contact-btn {
 		padding: 0.75rem 2rem;
 		border: 1px solid
@@ -179,6 +215,200 @@
 	}
 
 	/* ========================================
+	   CASE STUDIES
+	   ======================================== */
+
+	.cases-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1.25rem;
+		margin-top: 2.5rem;
+	}
+
+	@media (min-width: 768px) {
+		.cases-grid {
+			grid-template-columns: repeat(3, 1fr);
+			gap: 1.5rem;
+		}
+	}
+
+	.case-tile {
+		position: relative;
+		aspect-ratio: 4 / 3;
+		border-radius: 0.75rem;
+		overflow: hidden;
+		border: 1px solid
+			color-mix(in srgb, var(--color-accent-orange) 25%, transparent);
+		cursor: default;
+	}
+
+	.case-tile-image {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: filter 280ms ease;
+	}
+
+	.case-tile-image--placeholder {
+		background: linear-gradient(
+			135deg,
+			var(--color-bg-panel),
+			color-mix(in srgb, var(--color-accent-orange) 10%, var(--color-bg-panel))
+		);
+	}
+
+	.case-tile-label {
+		position: absolute;
+		inset: 0;
+		display: flex;
+		align-items: flex-start;
+		justify-content: flex-start;
+		padding: 1.25rem;
+		text-align: left;
+		pointer-events: none;
+		opacity: 1;
+		transition: opacity 280ms ease;
+	}
+
+	.case-tile-label span {
+		font-family: var(--font-heading);
+		font-size: 1.1rem;
+		font-weight: 700;
+		letter-spacing: 0.02em;
+		color: var(--color-text-main);
+		text-shadow: 0 1px 6px color-mix(in srgb, #000 70%, transparent);
+	}
+
+	.case-tile-overlay {
+		position: absolute;
+		inset: 0;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		padding: 1.25rem;
+		background: color-mix(in srgb, #000 75%, transparent);
+		opacity: 0;
+		transform: translateY(6px);
+		transition:
+			opacity 280ms ease,
+			transform 280ms ease;
+	}
+
+	.case-tile-title {
+		font-family: var(--font-heading);
+		font-size: 1.1rem;
+		font-weight: 700;
+		color: var(--color-text-main);
+		margin-bottom: 0.5rem;
+	}
+
+	.case-tile-copy {
+		font-size: 0.85rem;
+		line-height: 1.5;
+		color: var(--color-text-muted);
+		margin-bottom: 0.75rem;
+	}
+
+	.case-tile-tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.4rem;
+	}
+
+	.case-tag {
+		font-family: var(--font-mono);
+		font-size: 0.65rem;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		padding: 0.2rem 0.5rem;
+		border-radius: 999px;
+		border: 1px solid
+			color-mix(in srgb, var(--color-accent-orange) 60%, transparent);
+		color: var(--color-accent-orange-soft);
+	}
+
+	.case-tile:hover .case-tile-image,
+	.case-tile:focus-within .case-tile-image {
+		filter: brightness(0.4);
+	}
+
+	.case-tile:hover .case-tile-label,
+	.case-tile:focus-within .case-tile-label {
+		opacity: 0;
+	}
+
+	.case-tile:hover .case-tile-overlay,
+	.case-tile:focus-within .case-tile-overlay {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	/* Touch devices: no hover, so tap-to-reveal via focus isn't reliable.
+	   Show overlay content statically beneath a shorter image instead. */
+	@media (hover: none) {
+		.case-tile {
+			aspect-ratio: auto;
+		}
+		.case-tile-image {
+			position: relative;
+			aspect-ratio: 16 / 9;
+		}
+		.case-tile-label {
+			display: none;
+		}
+		.case-tile-overlay {
+			position: relative;
+			opacity: 1;
+			transform: none;
+			background: var(--color-bg-panel);
+		}
+	}
+
+	/* ========================================
+	   ABOUT SECTION
+	   ======================================== */
+
+	.about-copy p {
+		font-size: 1.1rem;
+		line-height: 1.7;
+		color: var(--color-text-muted);
+		margin-bottom: 1.5em;
+	}
+
+	.about-copy p:last-child {
+		margin-bottom: 0;
+	}
+
+	.about-lead {
+		font-size: 1.3rem;
+		color: var(--color-text-main);
+		font-weight: 500;
+	}
+
+	.about-closer {
+		font-family: var(--font-heading);
+		font-size: 1.3rem;
+		font-weight: 600;
+		color: var(--color-accent-orange);
+	}
+
+	/* ========================================
+	   SECTION KICKER (non-interactive label)
+	   ======================================== */
+
+	.section-kicker {
+		font-family: var(--font-mono);
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		font-size: 0.85rem;
+		color: var(--color-text-muted);
+		margin-bottom: 1.5rem;
+		opacity: 0.75;
+	}
+
+	/* ========================================
 	   HERO SECTION
 	   ======================================== */
 
@@ -186,6 +416,63 @@
 		width: 100%;
 		max-width: 92vw;
 		margin-inline: auto;
+		position: relative;
+		z-index: 2;
+	}
+
+	/* Hero video background */
+	#hero {
+		position: relative;
+		overflow: hidden;
+	}
+
+	.hero-video-layer {
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+	}
+
+	.hero-video {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center;
+	}
+
+	.hero-video-overlay {
+		position: absolute;
+		inset: 0;
+		background: color-mix(in srgb, #fdfcf9 30%, transparent);
+	}
+
+	/* Hero-only light treatment: overrides dark-on-dark text */
+	.hero-light .hero-title {
+		color: #1a1d24;
+	}
+
+	.hero-light .hero-subtext {
+		color: #33363d;
+	}
+
+	.hero-light .hero-kicker {
+		color: var(--color-accent-orange-deep);
+	}
+
+	.hero-light .btn-primary {
+		color: var(--color-accent-orange-deep);
+		border-color: color-mix(
+			in srgb,
+			var(--color-accent-orange-deep) 80%,
+			transparent
+		);
+	}
+
+	.hero-light .btn-primary:hover {
+		background-color: color-mix(
+			in srgb,
+			var(--color-accent-orange-deep) 10%,
+			transparent
+		);
 	}
 
 	.hero-kicker {
