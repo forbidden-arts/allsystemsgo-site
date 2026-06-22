@@ -88,6 +88,13 @@ document.addEventListener("DOMContentLoaded", () => {
 		navHomeLink.classList.toggle("nav-home-link--visible", visible);
 	};
 
+	const siteNavbar = document.getElementById("site-navbar");
+
+	const setNavBackground = (visible) => {
+		if (!isMobile) return;
+		siteNavbar.classList.toggle("nav--scrolled", visible);
+	};
+
 	// 1) Button click freezes the glow once (kept one-way; intentional)
 	primaryButton.addEventListener("click", () => {
 		freezeButton();
@@ -96,20 +103,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	// 2) Nav home link visibility tracks whether the hero is in view,
 	//    continuously, so it hides again if the user scrolls/clicks back up.
+	//    On mobile, also toggles a background on the navbar once hero is gone.
 	const observer = new IntersectionObserver(
 		(entries) => {
 			const entry = entries[0];
 			if (!entry) return;
 
 			const heroInView = entry.intersectionRatio >= 0.85;
+			const heroAlmostGone = entry.intersectionRatio <= 0.15;
+
 			setNavHomeLinkVisible(!heroInView);
+			setNavBackground(heroAlmostGone);
 
 			if (!heroInView) {
 				freezeButton();
 			}
 		},
 		{
-			threshold: [0, 0.85, 1],
+			threshold: [0, 0.15, 0.85, 1],
 		},
 	);
 

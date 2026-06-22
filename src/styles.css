@@ -123,27 +123,33 @@
 
 	.nav-inner {
 		display: flex;
-		align-items: center;
+		align-items: stretch;
 		justify-content: space-between;
 	}
 
 	.nav-home-link {
-		font-family: var(--font-mono);
-		font-size: 0.75rem;
-		letter-spacing: 0.16em;
-		color: var(--color-accent-orange);
+		display: flex;
+		align-items: center;
+		align-self: stretch;
 		opacity: 0;
 		pointer-events: none;
 		transition: opacity 320ms ease;
 	}
 
 	.nav-home-link:hover {
-		color: var(--color-accent-orange-soft);
+		opacity: 0.8;
 	}
 
 	.nav-home-link--visible {
 		opacity: 1;
 		pointer-events: auto;
+	}
+
+	.nav-logo {
+		height: 100%;
+		width: auto;
+		display: block;
+		object-fit: contain;
 	}
 
 	.nav-right {
@@ -348,21 +354,44 @@
 	/* Touch devices: no hover, so tap-to-reveal via focus isn't reliable.
 	   Show overlay content statically beneath a shorter image instead. */
 	@media (hover: none) {
+		.cases-grid {
+			grid-template-columns: 1fr;
+		}
+
 		.case-tile {
 			aspect-ratio: auto;
+			border-radius: 0.75rem;
+			overflow: hidden;
 		}
+
 		.case-tile-image {
 			position: relative;
 			aspect-ratio: 16 / 9;
+			width: 100%;
+			height: auto;
+			object-fit: cover;
 		}
+
 		.case-tile-label {
 			display: none;
 		}
+
 		.case-tile-overlay {
 			position: relative;
 			opacity: 1;
 			transform: none;
 			background: var(--color-bg-panel);
+			padding: 1.25rem;
+			justify-content: flex-start;
+			gap: 0.75rem;
+		}
+
+		.case-tile-title {
+			margin-bottom: 0.5rem;
+		}
+
+		.case-tile-copy {
+			font-size: 0.9rem;
 		}
 	}
 
@@ -693,6 +722,7 @@
 		gap: 2rem;
 		justify-content: center;
 		align-items: center;
+		margin-top: 2.5rem;
 	}
 
 	.logo-item {
@@ -984,6 +1014,15 @@
    ======================================== */
 
 @media (max-width: 768px) {
+	.nav-right {
+		gap: 1rem;
+	}
+
+	.page-section {
+		padding-top: 5rem;
+		padding-bottom: 3rem;
+	}
+
 	/* Disable all animations on mobile */
 	.hero-kicker,
 	.scroll-indicator {
@@ -992,6 +1031,15 @@
 
 	.scroll-indicator {
 		display: none !important;
+	}
+
+	/* Navbar background fades in on mobile once hero is almost gone */
+	.site-navbar {
+		transition: background-color 400ms ease;
+	}
+
+	.site-navbar.nav--scrolled {
+		background-color: var(--color-bg-main);
 	}
 
 	.process-card {
