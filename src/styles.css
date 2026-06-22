@@ -480,7 +480,7 @@
 	}
 
 	.hero-light .hero-subtext {
-		color: #33363d;
+		color: var(--color-accent-orange-deep);
 	}
 
 	.hero-light .hero-kicker {
