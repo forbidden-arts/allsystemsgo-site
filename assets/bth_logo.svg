@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#0d1b3e"/>
+      <stop offset="60%"  stop-color="#1a3a6e"/>
+      <stop offset="82%"  stop-color="#7a3a1a"/>
+      <stop offset="92%"  stop-color="#d4621a"/>
+      <stop offset="100%" stop-color="#f0a030"/>
+    </linearGradient>
+
+    <clipPath id="frame">
+      <rect x="0" y="0" width="512" height="512"/>
+    </clipPath>
+
+    <clipPath id="sky-clip">
+      <rect x="0" y="0" width="512" height="368"/>
+    </clipPath>
+  </defs>
+
+  <!-- Sky background -->
+  <rect x="0" y="0" width="512" height="512" fill="url(#sky)" clip-path="url(#frame)"/>
+
+  <!-- Star trails: all arcs centered on Polaris at (140, 110) -->
+  <g clip-path="url(#sky-clip)" fill="none" stroke-linecap="round">
+
+    <!-- r=80 -->
+    <circle cx="140" cy="110" r="80" stroke="white" stroke-width="0.7" opacity="0.3"
+      stroke-dasharray="90 420" transform="rotate(-30 140 110)"/>
+    <circle cx="140" cy="110" r="80" stroke="#c8d8ff" stroke-width="1.4" opacity="0.6"
+      stroke-dasharray="40 460" stroke-dashoffset="-110" transform="rotate(60 140 110)"/>
+    <circle cx="140" cy="110" r="80" stroke="white" stroke-width="0.6" opacity="0.2"
+      stroke-dasharray="55 445" stroke-dashoffset="-220" transform="rotate(155 140 110)"/>
+    <circle cx="140" cy="110" r="80" stroke="white" stroke-width="0.8" opacity="0.35"
+      stroke-dasharray="30 470" stroke-dashoffset="-310" transform="rotate(-100 140 110)"/>
+    <circle cx="140" cy="110" r="80" stroke="#c8d8ff" stroke-width="0.5" opacity="0.25"
+      stroke-dasharray="45 455" stroke-dashoffset="-380" transform="rotate(200 140 110)"/>
+
+    <!-- r=130 -->
+    <circle cx="140" cy="110" r="130" stroke="white" stroke-width="0.8" opacity="0.35"
+      stroke-dasharray="130 688" transform="rotate(-50 140 110)"/>
+    <circle cx="140" cy="110" r="130" stroke="white" stroke-width="0.6" opacity="0.25"
+      stroke-dasharray="60 758" stroke-dashoffset="-200" transform="rotate(80 140 110)"/>
+    <circle cx="140" cy="110" r="130" stroke="#c8d8ff" stroke-width="1.0" opacity="0.45"
+      stroke-dasharray="80 728" stroke-dashoffset="-340" transform="rotate(190 140 110)"/>
+    <circle cx="140" cy="110" r="130" stroke="white" stroke-width="0.5" opacity="0.2"
+      stroke-dasharray="45 763" stroke-dashoffset="-480" transform="rotate(-140 140 110)"/>
+    <circle cx="140" cy="110" r="130" stroke="white" stroke-width="0.7" opacity="0.3"
+      stroke-dasharray="70 748" stroke-dashoffset="-570" transform="rotate(270 140 110)"/>
+
+    <!-- r=180 -->
+    <circle cx="140" cy="110" r="180" stroke="white" stroke-width="1.0" opacity="0.4"
+      stroke-dasharray="160 971" transform="rotate(-60 140 110)"/>
+    <circle cx="140" cy="110" r="180" stroke="#c8d8ff" stroke-width="1.6" opacity="0.65"
+      stroke-dasharray="70 1061" stroke-dashoffset="-280" transform="rotate(50 140 110)"/>
+    <circle cx="140" cy="110" r="180" stroke="white" stroke-width="0.7" opacity="0.25"
+      stroke-dasharray="100 1031" stroke-dashoffset="-450" transform="rotate(140 140 110)"/>
+    <circle cx="140" cy="110" r="180" stroke="white" stroke-width="0.9" opacity="0.35"
+      stroke-dasharray="120 1011" stroke-dashoffset="-620" transform="rotate(230 140 110)"/>
+    <circle cx="140" cy="110" r="180" stroke="#c8d8ff" stroke-width="0.5" opacity="0.2"
+      stroke-dasharray="55 1076" stroke-dashoffset="-780" transform="rotate(-160 140 110)"/>
+
+    <!-- r=240 -->
+    <circle cx="140" cy="110" r="240" stroke="white" stroke-width="1.1" opacity="0.45"
+      stroke-dasharray="180 1327" transform="rotate(-70 140 110)"/>
+    <circle cx="140" cy="110" r="240" stroke="white" stroke-width="0.8" opacity="0.3"
+      stroke-dasharray="90 1417" stroke-dashoffset="-350" transform="rotate(60 140 110)"/>
+    <circle cx="140" cy="110" r="240" stroke="#c8d8ff" stroke-width="1.2" opacity="0.4"
+      stroke-dasharray="140 1367" stroke-dashoffset="-600" transform="rotate(170 140 110)"/>
+    <circle cx="140" cy="110" r="240" stroke="white" stroke-width="0.6" opacity="0.2"
+      stroke-dasharray="70 1437" stroke-dashoffset="-830" transform="rotate(-170 140 110)"/>
+    <circle cx="140" cy="110" r="240" stroke="white" stroke-width="0.9" opacity="0.3"
+      stroke-dasharray="110 1397" stroke-dashoffset="-1050" transform="rotate(280 140 110)"/>
+
+    <!-- r=310 -->
+    <circle cx="140" cy="110" r="310" stroke="white" stroke-width="1.2" opacity="0.45"
+      stroke-dasharray="200 1747" transform="rotate(-80 140 110)"/>
+    <circle cx="140" cy="110" r="310" stroke="#c8d8ff" stroke-width="1.8" opacity="0.6"
+      stroke-dasharray="80 1867" stroke-dashoffset="-380" transform="rotate(30 140 110)"/>
+    <circle cx="140" cy="110" r="310" stroke="white" stroke-width="0.7" opacity="0.25"
+      stroke-dasharray="120 1827" stroke-dashoffset="-600" transform="rotate(130 140 110)"/>
+    <circle cx="140" cy="110" r="310" stroke="white" stroke-width="1.0" opacity="0.35"
+      stroke-dasharray="160 1787" stroke-dashoffset="-900" transform="rotate(220 140 110)"/>
+    <circle cx="140" cy="110" r="310" stroke="#c8d8ff" stroke-width="0.6" opacity="0.2"
+      stroke-dasharray="65 1882" stroke-dashoffset="-1200" transform="rotate(-160 140 110)"/>
+
+    <!-- r=400 -->
+    <circle cx="140" cy="110" r="400" stroke="white" stroke-width="1.0" opacity="0.35"
+      stroke-dasharray="220 2293" transform="rotate(-40 140 110)"/>
+    <circle cx="140" cy="110" r="400" stroke="white" stroke-width="0.7" opacity="0.2"
+      stroke-dasharray="100 2413" stroke-dashoffset="-400" transform="rotate(70 140 110)"/>
+    <circle cx="140" cy="110" r="400" stroke="#c8d8ff" stroke-width="1.3" opacity="0.4"
+      stroke-dasharray="170 2343" stroke-dashoffset="-750" transform="rotate(175 140 110)"/>
+    <circle cx="140" cy="110" r="400" stroke="white" stroke-width="0.8" opacity="0.25"
+      stroke-dasharray="90 2423" stroke-dashoffset="-1100" transform="rotate(280 140 110)"/>
+    <circle cx="140" cy="110" r="400" stroke="white" stroke-width="0.6" opacity="0.18"
+      stroke-dasharray="130 2383" stroke-dashoffset="-1500" transform="rotate(-130 140 110)"/>
+  </g>
+
+  <!-- Polaris dot -->
+  <circle cx="140" cy="110" r="0.5" fill="white" opacity="0.9" clip-path="url(#sky-clip)"/>
+
+  <!-- Land silhouette -->
+  <g clip-path="url(#frame)">
+    <path d="
+      M 0,512 L 0,400
+      Q 40,385 80,390
+      Q 120,395 150,375
+      Q 175,360 200,368
+      Q 230,378 260,370
+      Q 290,362 320,372
+      Q 355,383 390,368
+      Q 420,355 450,362
+      Q 480,370 512,358
+      L 512,512 Z
+    " fill="#0a0f1a"/>
+  </g>
+
+  <!-- Border -->
+  <rect x="8" y="8" width="496" height="496" rx="86" ry="86" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="3"/>
+</svg>
