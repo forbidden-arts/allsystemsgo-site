@@ -1,0 +1,35 @@
+---
+import { casesById } from '../data/cases.js';
+
+interface Props {
+  ids: string[];
+  title?: string;
+  label?: string;
+  id?: string;
+}
+
+const { ids, title = 'Where this has worked', label = 'Proof', id } = Astro.props;
+---
+<section class="block" id={id}>
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="label accent">{label}</span><h2>{title}</h2></div>
+      <a class="more" href="/work.html">All case studies &rarr;</a>
+    </div>
+    <div class="cases">
+      {ids.map((caseId) => {
+        const c = casesById[caseId];
+        return (
+          <a class="case" href={`/work.html#${caseId}`}>
+            <div class="who">{c.name}{c.showYear && <small>{c.year}</small>}</div>
+            <div>
+              <h3>{c.headline}</h3>
+              <div class="tags">{c.tags.map((t) => <span class="tag">{t}</span>)}</div>
+            </div>
+            <span class="go" aria-hidden="true">&rarr;</span>
+          </a>
+        );
+      })}
+    </div>
+  </div>
+</section>

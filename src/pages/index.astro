@@ -1,16 +1,80 @@
 ---
----
+import Base from '../layouts/Base.astro';
+import HeroDiagram from '../components/HeroDiagram.astro';
+import ProofList from '../components/ProofList.astro';
+import Marquee from '../components/Marquee.astro';
+import { offerings } from '../data/offerings.js';
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+type OfferingKey = keyof typeof offerings;
+
+const offers: { key: OfferingKey; name: string; href: string; link: string }[] = [
+  { key: 'strategy', name: 'Adaptive long-term strategy', href: '/strategy.html', link: 'Strategy' },
+  { key: 'roadmapping', name: 'Roadmapping', href: '/roadmapping.html', link: 'Roadmapping' },
+  { key: 'growth', name: 'Growth, innovation and business design', href: '/growth.html', link: 'Growth and design' },
+];
+
+---
+<Base title="All Systems Go!">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="label accent">Strategy / Roadmapping / Innovation</span>
+        <h1>Complexity, <em>resolved.</em></h1>
+        <p class="sub">Strategy, roadmapping and innovation consulting that turns shifting markets into a clear path forward.</p>
+        <div class="cta"><a class="btn" href="/contact.html">Start a conversation <span aria-hidden="true">&rarr;</span></a></div>
+      </div>
+      <HeroDiagram />
+    </div>
+  </section>
+
+  <ProofList
+    id="work"
+    label="Selected work"
+    title="What changed for the client"
+    ids={['wartsila', 'asana', 'beiersdorf', 'samsung', 'microsoft']}
+  />
+
+  <section class="block" id="offering">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="label accent">What we do</span><h2>Three ways in</h2></div>
+      </div>
+      <div class="offers">
+        {offers.map((o) => (
+          <article class="offer">
+            <h3>{o.name}</h3>
+            <p class="lead">{offerings[o.key].headline}</p>
+            <ul>
+              {offerings[o.key].items.map(([item]) => <li>{item}</li>)}
+            </ul>
+            <a class="more" href={o.href}>{o.link} &rarr;</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="label accent">How we work</span><h2>Three principles</h2></div>
+      </div>
+      <div class="principles">
+        <div class="principle"><h3>An outside view</h3><p>Not tied to your internal plans, so the options on the table are the real ones.</p></div>
+        <div class="principle"><h3>Alongside the owner</h3><p>We work with the person who owns the strategy, in the room where decisions get made.</p></div>
+        <div class="principle"><h3>Yours to run</h3><p>You are left with something your team can run on its own.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <Marquee />
+
+  <section class="block position" id="view">
+    <div class="wrap">
+      <span class="label accent" style="padding-top:12px">Our view</span>
+      <p class="statement">Markets move faster than plans. We help you see what changed, choose a direction, and build the path to it.</p>
+    </div>
+  </section>
+
+  <!-- Insights section reserved. Hidden until there are fresh articles to show. -->
+</Base>

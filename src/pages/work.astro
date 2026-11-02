@@ -1,0 +1,83 @@
+---
+
+import Base from '../layouts/Base.astro';
+import { cases } from '../data/cases.js';
+import Marquee from '../components/Marquee.astro';
+
+---
+<Base title="Work | All Systems Go!">
+  <section class="hero simple">
+    <div class="wrap">
+      <span class="label accent">Case studies</span>
+      <h1>What changed for the client</h1>
+      <p class="sub">Six engagements, newest first. Open one to see the situation, what we did and what came of it.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="acc-list">
+        {cases.map((c, i) => (
+          <details class="acc" id={c.id} open={i === 0}>
+            <summary>
+              <div class="who">{c.name}{c.showYear && <small>{c.year}</small>}</div>
+              <h2>{c.headline}</h2>
+              <span class="chev" aria-hidden="true">&rsaquo;</span>
+            </summary>
+            <div class="acc-body">
+              <dl class="facts">
+                {c.facts.map(([k, v]) => (
+                  <div><dt>{k}</dt><dd>{v}</dd></div>
+                ))}
+              </dl>
+              <div class="story">
+                <div><h3>Situation</h3><p>{c.situation}</p></div>
+                <div>
+                  <h3>What we did</h3>
+                  {Array.isArray(c.did)
+                    ? <ul>{c.did.map((d) => <li>{d}</li>)}</ul>
+                    : <p>{c.did}</p>}
+                </div>
+                <div><h3>Result</h3><p>{c.result}</p></div>
+                {c.quote && (
+                  <div class="quote">
+                    <blockquote>"{c.quote.text}"</blockquote>
+                    <cite>{c.quote.by}</cite>
+                  </div>
+                )}
+                {c.link && <p><a class="inline" href={c.link.href}>{c.link.text} &rarr;</a></p>}
+              </div>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+  <Marquee />
+</Base>
+
+<script>
+  // One case open at a time, with deep links like work.html#asana
+  const all = Array.from(document.querySelectorAll<HTMLDetailsElement>('details.acc'));
+
+  function openFromHash() {
+    const id = location.hash.slice(1);
+    const el = id ? document.getElementById(id) : null;
+    if (el instanceof HTMLDetailsElement && el.matches('details.acc')) {
+      all.forEach((d) => { d.open = d === el; });
+      el.scrollIntoView({ block: 'start' });
+    }
+  }
+
+  all.forEach((d) => {
+    d.addEventListener('toggle', () => {
+      if (d.open) {
+        all.forEach((o) => { if (o !== d) o.open = false; });
+        try { history.replaceState(null, '', '#' + d.id); } catch {}
+      }
+    });
+  });
+
+  window.addEventListener('hashchange', openFromHash);
+  openFromHash();
+</script>

@@ -1,0 +1,30 @@
+---
+const clients = [
+  { name: 'Microsoft', logo: 'microsoft.png' },
+  { name: 'Samsung', logo: 'samsung.png' },
+  { name: 'Beiersdorf', logo: 'beiersdorf.png' },
+  { name: 'Wärtsilä', logo: 'wartsila.svg' },
+  { name: 'Asana', logo: 'asana.png' },
+  { name: 'F5', logo: 'f5.png' },
+  { name: 'T-Mobile', logo: 't-mobile.png' },
+  { name: 'Vesta', logo: 'vestas.png' },
+  { name: 'MAJ', logo: 'maj.png' },
+  { name: 'Boost', logo: 'boost.png' },
+  { name: 'European Innovation Council', logo: 'eic.png' },
+];
+---
+<div class="trusted">
+  <div class="wrap">
+    <span class="label">Trusted by</span>
+    <div class="marquee">
+      <div class="track">
+        {clients.map((c) => (
+          <span><img src={`/logos/${c.logo}`} alt="" /><b>{c.name}</b></span>
+        ))}
+        {clients.map((c) => (
+          <span aria-hidden="true"><img src={`/logos/${c.logo}`} alt="" /><b>{c.name}</b></span>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+---
+import '../styles/styles.css';
+
+const {
+  title = 'All Systems Go!',
+  closing = true,
+  closingTitle = "Tell us what you're facing.",
+  closingText = 'A short conversation is enough to see whether strategy, a roadmap or a sprint is the right place to start.',
+} = Astro.props;
+const path = Astro.url.pathname;
+const nav = [
+  { href: '/strategy.html', label: 'Strategy' },
+  { href: '/roadmapping.html', label: 'Roadmapping' },
+  { href: '/growth.html', label: 'Growth' },
+  { href: '/work.html', label: 'Work' },
+  { href: '/about.html', label: 'About' },
+];
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <title>{title}</title>
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <a class="mark" href="/"><i></i>All Systems Go!</a>
+    <nav class="main" aria-label="Main">
+      {nav.map((n) => (
+        <a class="link" href={n.href} aria-current={path === n.href ? 'page' : undefined}>{n.label}</a>
+      ))}
+      <a class="btn small" href="/contact.html">Start a conversation</a>
+    </nav>
+  </div>
+</header>
+<main id="top">
+  <slot />
+  {closing && (
+    <section class="block closing" id="contact">
+      <div class="wrap">
+        <span class="label accent">Next step</span>
+            <h2>{closingTitle}</h2>
+            <p>{closingText}</p>
+            <a class="btn" href="/contact.html">Start a conversation <span aria-hidden="true">&rarr;</span></a>
+      </div>
+    </section>
+  )}
+</main>
+<footer class="site">
+  <div class="wrap">
+    <span class="label">All Systems Go! Oy</span>
+    <span class="label">Turku, Finland</span>
+    <span class="label">Future Forward since 2017</span>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,54 @@
+---
+import Base from './Base.astro';
+import ProofList from '../components/ProofList.astro';
+import { offerings } from '../data/offerings.js';
+
+interface Props {
+  offering: keyof typeof offerings;
+}
+
+const o = offerings[Astro.props.offering];
+---
+<Base title={o.title}>
+  <section class="hero simple">
+    <div class="wrap">
+      <a class="crumb" href="/#offering">&larr; What we do</a>
+      <h1>{o.headline}</h1>
+      <p class="sub">{o.sub}</p>
+      <div class="cta"><a class="btn" href="/contact.html">Start a conversation <span aria-hidden="true">&rarr;</span></a></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="sec-head"><div><span class="label accent">What we do</span><h2>{o.itemsTitle}</h2></div></div>
+      <div class="items">
+        {o.items.map(([h, p]) => <div><h3>{h}</h3><p>{p}</p></div>)}
+      </div>
+    </div>
+  </section>
+
+  <slot name="after-items" />
+
+  <section class="block">
+    <div class="wrap">
+      <div class="sec-head"><div><span class="label accent">Who brings us in</span><h2>The people who call us</h2></div></div>
+      <div class="items">
+        {o.who.map(([r, p]) => <div><h3>{r}</h3><p>{p}</p></div>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap shape">
+      <span class="label accent" style="padding-top:12px">Engagement shape</span>
+      <div class="prose">
+        {o.shape.map((p) => <p>{p}</p>)}
+      </div>
+    </div>
+  </section>
+
+  <slot name="extra" />
+
+  <ProofList ids={o.caseIds} title={o.caseTitle} />
+</Base>

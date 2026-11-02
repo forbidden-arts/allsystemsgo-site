@@ -1,0 +1,41 @@
+---
+import Offering from '../layouts/Offering.astro';
+import { papers, sawComing } from '../data/microsoft.js';
+---
+<Offering offering="strategy">
+  <section class="block" slot="after-items">
+    <div class="wrap">
+      <div class="sec-head"><div><span class="label accent">What you walk away with</span><h2>Clarity you can hand to someone else</h2></div></div>
+      <div class="leave">
+        <div><h3>Sense made of the chaos</h3><p>The forces acting on your market, sorted into what matters and what does not.</p></div>
+        <div><h3>A clear path forward</h3><p>A direction chosen from real options, with the first moves named.</p></div>
+        <div><h3>A document in hand</h3><p>A strategy brief your leadership, board and teams can read and act on.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="papers" slot="extra">
+    <div class="wrap">
+      <div class="sec-head"><div><span class="label accent">Featured work</span><h2>The Microsoft future series</h2></div></div>
+      <div class="prose" style="margin-bottom:32px"><p>Seventeen papers over 22 months, each one a scenario-based look at an industry's future. The concept and outline of every paper came from us. These eight carry our credit.</p></div>
+      <div class="papers">
+        {papers.map((p) => (
+          <a class="paper" href={p.href}>
+            <div class="row"><span class="label">{p.year}</span><span class="open">PDF &darr;</span></div>
+            <h3>{p.title}</h3>
+            <p style="color:var(--muted);font-size:15px">{p.blurb}</p>
+          </a>
+        ))}
+      </div>
+      <div style="margin-top:56px">
+        <span class="label accent">What the series saw coming</span>
+        <h3 style="font-size:28px;margin:10px 0 24px">Published in 2017 and 2018</h3>
+        <div class="saw">
+          {sawComing.map((s) => (
+            <div><h3>{s.heading}</h3><p>{s.text}</p><span class="src">{s.source}</span></div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</Offering>

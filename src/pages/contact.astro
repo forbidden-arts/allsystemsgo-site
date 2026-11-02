@@ -1,0 +1,71 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Contact | All Systems Go!" closing={false}>
+  <section class="hero simple">
+    <div class="wrap">
+      <span class="label accent">Contact</span>
+      <h1>Start a conversation.</h1>
+      <p class="sub">Tell us what you are facing. We will reply within a couple of working days.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="steps">
+        <div><span class="label accent">Step 1</span><h3>Tell us what you're facing</h3><p>A few sentences are enough. Use the form or write directly.</p></div>
+        <div><span class="label accent">Step 2</span><h3>A short call</h3><p>We ask questions and say plainly whether we can help.</p></div>
+        <div><span class="label accent">Step 3</span><h3>A clear proposal</h3><p>Scope, deliverables and timing, set out in one page you can act on.</p></div>
+      </div>
+
+      <div class="contact-grid">
+        <div>
+          <form class="contact" id="contact-form" action="https://formspree.io/f/xvgerljp" method="post">
+            <label for="name">Name<input id="name" name="name" type="text" autocomplete="name" required></label>
+            <label for="email">Email<input id="email" name="email" type="email" autocomplete="email" required></label>
+            <label for="company">Company<input id="company" name="company" type="text" autocomplete="organization"></label>
+            <label for="facing">What are you facing?<textarea id="facing" name="message" required></textarea></label>
+            <button class="btn" type="submit">Send <span aria-hidden="true">&rarr;</span></button>
+          </form>          <p id="form-error" hidden style="color:var(--accent);margin-top:12px">Something went wrong. Please write to us directly at dan@allsystemsgo.fi.</p>
+          <div class="thanks" id="thanks" hidden>
+            <h2>Thank you.</h2>
+            <p>Your message is in. We will reply within a couple of working days.</p>
+          </div>
+        </div>
+        <aside class="direct">
+          <div><span class="label">Write directly</span><span class="addr" id="addr">dan@allsystemsgo.fi</span><button class="copy" type="button" id="copy">Copy address</button></div>
+          <div><span class="label">LinkedIn</span><a href="https://www.linkedin.com/company/all-systems-go-fi/home/" target="_blank" rel="noopener">Connect on LinkedIn</a></div>
+          <div><span class="label">Where</span><span>Turku, Finland</span></div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script>
+  // Formspree with the redirect suppressed: send as AJAX and show the thank-you in place.
+    // Formspree with the redirect suppressed: send as AJAX and show the thank-you in place.
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const thanks = document.getElementById('thanks') as HTMLElement;
+  const error = document.getElementById('form-error') as HTMLElement;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    error.hidden = true;
+    try {
+      const r = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' },
+      });
+      if (r.ok) {
+        form.hidden = true;
+        thanks.hidden = false;
+      } else {
+        error.hidden = false;
+      }
+    } catch {
+      error.hidden = false;
+    }
+  });
+</script>
