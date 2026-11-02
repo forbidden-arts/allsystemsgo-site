@@ -1123,3 +1123,8 @@ form.contact button {
 	object-fit: contain;
 	opacity: 0.6;
 }
+.mark img {
+	display: block;
+	height: 26px;
+	width: auto;
+}
