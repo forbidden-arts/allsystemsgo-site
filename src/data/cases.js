@@ -10,7 +10,7 @@ export const cases = [
 		tags: ["Strategy", "Roadmapping"],
 		offerings: ["strategy", "roadmapping"],
 		headline:
-			"From technical plans to real strategy: teaching engineering teams to think, plan and present strategically",
+			"From technical plans to real strategy: teaching engineering teams to think, plan, and present strategically",
 		facts: [
 			["Offering", "Strategy, roadmapping"],
 			["Format", "Four workshops"],
@@ -39,7 +39,7 @@ export const cases = [
 		tags: ["Strategy", "Roadmapping", "AI"],
 		offerings: ["strategy", "roadmapping"],
 		headline:
-			"How do you reposition a work-management product when GPT-3 rewrites the market?",
+			"How do you reposition a work-management product when GenAI and agentic workflows rewrite the market?",
 		facts: [
 			["Offering", "Strategy, AI roadmapping"],
 			["Format", "A running series of calls over nine months"],
@@ -47,7 +47,7 @@ export const cases = [
 		],
 		situation:
 			"Asana's value proposition was not well defined. GPT-3 disrupted whatever plans were in place, and the market was rewriting itself around AI.",
-		did: "Together with the Head of Market Strategy we analyzed the landscape, mapped the options and set out the capabilities to build, in a running series of calls over nine months.",
+		did: "Together with the Head of Market Strategy we analyzed the landscape, mapped the options, and set out the capabilities to build, in a running series of calls over nine months.",
 		result: "Asana repositioned itself around the Coordination Layer.",
 		quote: {
 			text: "Dan's big-picture perspective helped us understand where we were, what options were available, and the steps necessary to start building those capabilities.",
@@ -111,7 +111,7 @@ export const cases = [
 		],
 		situation:
 			"Samsung was catching up to Alexa and needed a way into the home that was not another smart speaker.",
-		did: "We developed the blueprint for a true SmartHome ecosystem: the strategy, the roadmap and the market entry plan.",
+		did: "We developed the blueprint for a true SmartHome ecosystem: the strategy, the roadmap, and the market entry plan.",
 		result: "The blueprint became version 1.0 of Samsung's SmartHome strategy.",
 	},
 	{
@@ -122,7 +122,7 @@ export const cases = [
 		tags: ["Strategy", "Foresight"],
 		offerings: ["strategy", "growth"],
 		headline:
-			"From follower to thought leader: a 17-paper future series that mapped the AI era four to five years before ChatGPT",
+			"From follower to thought leader: a 17-paper future series that mapped the AI era five years before ChatGPT",
 		facts: [
 			["Offering", "Strategy, foresight"],
 			["Period", "March 2017 to December 2018"],
@@ -131,9 +131,9 @@ export const cases = [
 		],
 		situation:
 			"Microsoft wanted to be seen as a thought leader on where industries were going, rather than a follower reacting to them.",
-		did: "Concept and outline for all 17 papers: the scenarios, causal chains, opportunities, threats and business model changes, with stakeholder interviews to keep them grounded. Eight written end to end, three also designed.",
+		did: "Concept and outline for all 17 papers: the scenarios, causal chains, opportunities, threats, and business model changes, with stakeholder interviews to keep them grounded. Eight written end to end, three also designed.",
 		result:
-			"Papers on banking, manufacturing, retail, cybersecurity and more, published and showcased through 2017 and 2018. Several saw the AI era coming four to five years before ChatGPT.",
+			"Papers on banking, manufacturing, retail, cybersecurity, and more, published and showcased through 2017 and 2018. Several saw the AI era coming four to five years before ChatGPT.",
 		link: {
 			href: "/strategy.html#papers",
 			text: "Read the papers and what they saw coming",

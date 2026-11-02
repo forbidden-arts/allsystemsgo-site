@@ -4,7 +4,7 @@ export const offerings = {
 	strategy: {
 		title: "Adaptive long-term strategy | All Systems Go!",
 		headline: "Your plan was overturned. Now what?",
-		sub: "A new technology, a new competitor or a new rule changed the ground under your plan. We help you see what changed, weigh the options and write the strategy that fits the market as it is now.",
+		sub: "A new technology, a new competitor, or a new rule changed the ground under your plan. We help you see what changed, weigh the options and write the strategy that fits the market as it is now.",
 		itemsTitle: "Four things we deliver",
 		items: [
 			[
@@ -53,7 +53,7 @@ export const offerings = {
 	roadmapping: {
 		title: "Roadmapping | All Systems Go!",
 		headline: "You know where you want to go. In what order do you get there?",
-		sub: "We turn a direction into a sequence: what happens first, who owns it, what it depends on and how you will know it worked.",
+		sub: "We turn a direction into a sequence: what happens first, who owns it, what it depends on, and how you will know it worked.",
 		itemsTitle: "Five roadmaps we build",
 		items: [
 			[
@@ -80,7 +80,7 @@ export const offerings = {
 		who: [
 			[
 				"Strategy and Transformation Lead",
-				"A direction is agreed and has to become OKRs, owners and a sequence that teams can run.",
+				"A direction is agreed and has to become OKRs, owners, and a sequence that teams can run.",
 			],
 			[
 				"Head of Product",
@@ -123,7 +123,7 @@ export const offerings = {
 			],
 			[
 				"Launches",
-				"Site, store and channels live, coordinated with your team.",
+				"Site, store, and channels live, coordinated with your team.",
 			],
 		],
 		who: [

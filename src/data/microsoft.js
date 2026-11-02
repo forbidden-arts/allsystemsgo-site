@@ -6,7 +6,7 @@ export const papers = [
 	{
 		year: "2017",
 		title: "A new vision of cybersecurity",
-		blurb: "Identity, trust and the shape of the threat",
+		blurb: "Identity, trust, and the shape of the threat",
 		href: "/papers/a-new-vision-of-cybersecurity.pdf",
 	},
 	{
@@ -48,7 +48,7 @@ export const papers = [
 	{
 		year: "2018",
 		title: "The future banking workforce",
-		blurb: "Work, workers and the ecosystem model",
+		blurb: "Work, workers, and the ecosystem model",
 		href: "/papers/the-future-banking-workforce.pdf",
 	},
 ];
@@ -71,7 +71,7 @@ export const sawComing = [
 	},
 	{
 		heading: "Identity from behavior",
-		text: "A fourth identity component joins what you know, have and are: what a person does.",
+		text: "A fourth identity component joins what you know, have, and are: what a person does.",
 		source: "A new vision of cybersecurity, 2017",
 	},
 	{
