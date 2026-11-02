@@ -46,7 +46,7 @@ export const offerings = {
 			"Part expert consulting, part facilitation.",
 			"A handful of expert calls and a handful of workshops, shaped around the people who own the decision.",
 		],
-		caseIds: ["asana", "microsoft", "samsung", "wartsila"],
+		caseIds: ["asana", "samsung", "wartsila"],
 		caseTitle: "Where strategy changed the plan",
 	},
 
@@ -99,7 +99,7 @@ export const offerings = {
 			"A roadmap is built with the people who will run it.",
 			"Working sessions to set the direction, analysis between them, and a final roadmap your team can hand to the next quarter.",
 		],
-		caseIds: ["asana", "samsung", "f5", "wartsila"],
+		caseIds: ["samsung", "f5", "wartsila"],
 		caseTitle: "Where roadmaps turned into results",
 	},
 

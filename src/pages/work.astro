@@ -17,8 +17,8 @@ import Marquee from '../components/Marquee.astro';
   <section class="block">
     <div class="wrap">
       <div class="acc-list">
-        {cases.map((c, i) => (
-          <details class="acc" id={c.id} open={i === 0}>
+        {cases.map((c) => (
+          <details class="acc" id={c.id}>
             <summary>
               <div class="who">{c.name}{c.showYear && <small>{c.year}</small>}</div>
               <h2>{c.headline}</h2>
