@@ -14,7 +14,7 @@ export const cases = [
 		facts: [
 			["Offering", "Strategy, roadmapping"],
 			["Format", "Four workshops"],
-			["Result", "Expanded to three more teams"],
+			["Duration", "Four days spread over four months"],
 		],
 		situation:
 			"A team of engineers was treating its technical development plans as a strategy roadmap.",
